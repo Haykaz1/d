@@ -1,0 +1,16 @@
+1)
+function nums (i) {
+ console.log(i)
+}
+let i = 1
+while (i <= 100) {
+ nums (i)
+ i++
+}
+__________________
+2)
+let oddNumbers = 1;
+while (oddNumbers < 100) {
+ console.log(oddNumbers);
+ oddNumbers = oddNumbers +2;
+}
