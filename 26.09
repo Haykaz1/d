@@ -1,0 +1,13 @@
+using System;
+
+public class Program
+{
+	public static void Main()
+	{
+		Console.Write("Введите свое имя: ");
+        string? name = Console.ReadLine();      
+        Console.WriteLine($"Привет {name}");    
+		
+        
+	}
+}
