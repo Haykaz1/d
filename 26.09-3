@@ -1,0 +1,27 @@
+using System;
+
+public class Program
+{
+	public static void Main()
+	{
+		Console.WriteLine("Компания \"Рога и копыта\"");
+		Console.WriteLine("hello");
+    Console.WriteLine("фыва");
+    Console.WriteLine("hello word");
+		Console.WriteLine('\u0420');    
+    Console.WriteLine('\u0421');
+		Console.WriteLine('\x78');   
+    Console.WriteLine('\x5A');
+		Console.WriteLine('2');
+    Console.WriteLine('A');
+    Console.WriteLine('T');
+		Console.WriteLine(3.2e3);   
+    Console.WriteLine(1.2E-1);
+		Console.WriteLine(0x0A);    
+    Console.WriteLine(0xFF);    
+    Console.WriteLine(0xA1); 
+		Console.WriteLine(0b11);        
+    Console.WriteLine(0b1011);      
+    Console.WriteLine(0b100001);
+	}
+}
