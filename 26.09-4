@@ -1,0 +1,38 @@
+using System;
+
+public class Program
+{
+	public static void Main()
+	{
+		bool alive = true;
+    bool isDead = false;
+		byte bit1 = 1;
+    byte bit2 = 102;
+		sbyte bit3 = -101;
+    sbyte bit4 = 102;
+		short n1 = 1;
+    short n2 = 102;
+		ushort n3 = 1;
+    ushort n4 = 102;
+		int a = 10;
+    int b = 0b101;
+    int c = 0xFF;
+		uint d = 10;
+    uint e = 0b101;
+    uint f = 0xFF;
+		long g = -10;
+    long h = 0b101;
+    long i = 0xFF;
+		ulong j = 10;
+    ulong k = 0b101;
+    ulong l = 0xFF;
+		char m = 'A';
+		char n = '\x5A';
+    char o = '\u0420';
+		string hello = "Hello";
+    string word = "world";
+		object p = 22;
+    object q = 3.14;
+    object r = "hello code";
+	}
+}
