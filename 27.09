@@ -1,0 +1,17 @@
+using System;
+
+public class Program
+{
+	public static void Main()
+	{
+		int a = 4;
+    System.Int32 b = 4;
+    var hello = "Hell to World";
+    var c = 20;
+		uint d = 10U;
+    long e = 20L;
+    ulong f = 30UL;
+		int g;
+    a = 20;
+	}
+}
