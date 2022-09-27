@@ -1,0 +1,36 @@
+using System;
+
+public class Program
+{
+	public static void Main()
+	{
+		string name = "Tom";
+    int age = 34;
+    double height = 1.7;
+    Console.WriteLine($"Имя: {name}  Возраст: {age}  Рост: {height}м");
+		string names = "Tom";
+    int ages = 34;
+    double heights = 1.7;
+    Console.WriteLine("Имя: {0}  Возраст: {2}  Рост: {1}м", names, heights, ages);
+		string ame = "Tom";
+    int ge = 34;
+    double eight = 1.7;
+    Console.Write($"Имя: {ame}  Возраст: {ge}  Рост: {eight}м");
+		Console.Write("Введите свое имя: ");
+    string? Name = Console.ReadLine();
+    Console.WriteLine($"Привет {name}");
+		Console.Write("Введите имя: ");
+    string? nme = Console.ReadLine();
+ 
+    Console.Write("Введите возраст: ");
+    int ag = Convert.ToInt32(Console.ReadLine());
+ 
+    Console.Write("Введите рост: ");
+    double heiht = Convert.ToDouble(Console.ReadLine());
+ 
+    Console.Write("Введите размер зарплаты: ");
+    decimal salary = Convert.ToDecimal(Console.ReadLine());
+ 
+    Console.WriteLine($"Имя: {name}  Возраст: {age}  Рост: {height}м  Зарплата: {salary}$");
+	}
+}
