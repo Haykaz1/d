@@ -1,0 +1,50 @@
+using System;
+					
+public class Program
+{
+	public static void Main()
+	{
+		int x1 = 2; 
+    int y1 = 5;
+    Console.WriteLine(x1&y1); 
+             
+    int x2 = 4; 
+    int y2 = 5; 
+    Console.WriteLine(x2 & y2);
+		int x4 = 2; 
+    int y4 = 5;
+    Console.WriteLine(x1|y1);
+    int x5 = 4;
+    int y5 = 5;
+    Console.WriteLine(x2 | y2);
+		int x = 45;
+    int key = 102;
+ 
+    int encrypt = x ^ key; 
+    Console.WriteLine($"Зашифрованное число: {encrypt}") ;
+ 
+    int decrypt = encrypt ^ key; 
+    Console.WriteLine($"Расшифрованное число: {decrypt}");
+		int f = 12;                
+    Console.WriteLine(~f);
+		int x6 = 12;
+    int y = ~x6;
+    y += 1;
+    Console.WriteLine(y);
+		int a = 16;
+    int b = 2; 
+    int c = a << b; 
+ 
+    Console.WriteLine($"Зашифрованное число: {c}") ;   
+    int d = a >> b; 
+    Console.WriteLine($"Зашифрованное число: {d}");
+		int g = 22; 
+    int h = 2; 
+    int n = g << h; 
+ 
+    Console.WriteLine($"Зашифрованное число: {n}") ;  
+ 
+    int m = g >> h; 
+    Console.WriteLine($"Зашифрованное число: {m}");
+	}
+}
