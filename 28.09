@@ -1,0 +1,43 @@
+using System;
+					
+public class Program
+{
+	public static void Main()
+	{
+		int x = 10;
+    int z = x + 12;
+		int x4 = 10;
+    int z4 = x4 + 12;
+		int x5 = 10;
+    int z5 = x5 * 5;
+		int x6 = 10;
+    int z6 = x6 / 5; 
+ 
+    double a = 10;
+    double b = 3;
+    double c = a / b;
+		double z2j = 10 /  4;
+		double zh = 10.0 /  4.0;
+		double xy = 10.0;
+    double ze = x % 4.0;
+		int x1 = 5;
+    int z1 = ++x1; 
+    Console.WriteLine($"{x1} - {z1}");
+ 
+    int x2 = 5;
+    int z2 = x2++; 
+    Console.WriteLine($"{x2} - {z2}");
+		int xr = 5;
+    int zr = --x1;  
+    Console.WriteLine($"{x1} - {zr}");
+ 
+    int xt = 5;
+    int zt = x2--; 
+    Console.WriteLine($"{xt} - {zt}");
+		int e = 3;
+    int f = 5;
+    int g = 40;
+    int h = g---f*e;    
+    Console.WriteLine($"e={e}  f={f}  f={f}  h={h}");
+	}
+}
