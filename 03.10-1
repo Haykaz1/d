@@ -1,0 +1,16 @@
+using System;
+					
+public class Program
+{
+	public static void Main()
+	{
+		byte a = 4;
+int b = a + 70;
+		byte o = 4;
+byte p = (byte)(o + 70);
+		byte k = 4;             // 0000100
+ushort l = k;   // 000000000000100
+		ushort s = 4;
+byte d = (byte) s;
+	}
+}
