@@ -1,0 +1,21 @@
+using System;
+					
+public class Program
+{
+	public static void Main()
+	{
+		int a = 10;
+    int b = 4;
+    bool c = a == b; // false
+		
+    bool o = a != b;    // true
+    bool d = a!=10;     // false
+		bool p = a < b; // false
+		bool l = a > b;     // true
+    bool k = a > 25;    // false
+		bool y = a <= b;     // false
+    bool x = a <= 25;    // true
+		bool u = a >= b;     // true
+    bool n = a >= 25;    // false
+	}
+}
