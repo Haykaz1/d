@@ -1,0 +1,22 @@
+using System;
+					
+public class Program
+{
+	public static void Main()
+	{
+		sbyte a = 4;            // 0000100
+    short b = a;    // 000000000000100
+		sbyte c = -4;           // 1111100
+    short d = c;    // 111111111111100
+		int e = 4;
+    int f = 6;
+    byte g = (byte)(e+f);
+		Console.WriteLine("byte -> short -> int -> long -> decimal,      int -> double,       short -> float -> double,         char -> int");
+		double o = 4.0;
+    decimal p = (decimal)o;
+		int i = 33;
+    int u = 600;
+    byte y = (byte)(i+u);
+    Console.WriteLine(y);
+	}
+}
