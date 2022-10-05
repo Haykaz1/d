@@ -1,0 +1,24 @@
+using System;
+					
+public class Program
+{
+	public static void Main()
+	{
+		for (int i = 1; i < 4; i++)
+{
+    Console.WriteLine(i);
+}
+var o = 1;
+ 
+for (Console.WriteLine("Начало выполнения цикла"); o < 4; Console.WriteLine($"o = {o}"))
+{
+    o++;
+}
+int p = 1;
+for (; ;)
+{
+    Console.WriteLine($"p = {p}");
+    p++;
+}
+	}
+}
