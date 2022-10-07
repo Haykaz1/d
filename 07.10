@@ -1,0 +1,97 @@
+using System;
+					
+public class Program
+{
+	public static void Main(string[] args)
+	{
+		int[,] areey = new int[4, 4] ;
+		areey[0, 0] = 1;
+		areey[3, 3] = 254;
+		Console.WriteLine(areey[3, 3]);
+		int[] nums2 = new int[4] { 1, 2, 3, 5 };
+ 
+        int[] nums3 = new int[] { 1, 2, 3, 5 };
+ 
+        int[] nums4 = new[] { 1, 2, 3, 5 };
+ 
+        int[] nums5 = { 1, 2, 3, 5 };
+		
+		string[] people = { "Tom", "Sam", "Bob" };
+		
+		int[] numbers = { 1, 2, 3, 5 };
+ 
+        Console.WriteLine(numbers[3]);  
+ 
+
+        var n = numbers[1];   
+        Console.WriteLine(n);
+		
+		int[] number = { 1, 2, 3, 5 };
+ 
+
+        number[1] = 505;
+ 
+        Console.WriteLine(number[1]);
+		
+		Console.WriteLine(numbers.Length);
+		
+        Console.WriteLine(numbers[^1]); 
+        Console.WriteLine(numbers[^2]);  
+        Console.WriteLine(numbers[^3]);
+		
+        int[] numbe = { 1, 2, 3, 4, 5 };
+        foreach (int i in numbe)
+{
+        Console.WriteLine(i);	
+}
+		for (int i = 0; i < numbe.Length; i++)
+{
+        Console.WriteLine(numbe[i]);
+}
+		
+for (int i = 0; i < numbers.Length; i++)
+{
+    numbers[i] = numbers[i] * 3;
+    Console.WriteLine(numbers[i]);
+}
+
+int o = 0;
+while(o < numbers.Length)
+{
+    Console.WriteLine(numbers[o]);
+    o++;
+}
+		int[] nums1 = new int[] { 0, 1, 2, 3, 4, 5 };
+ 
+int[,] nums7 = { { 0, 1, 2 }, { 3, 4, 5 } };
+		int[,] num1;
+int[,] num2 = new int[2, 3];
+int[,] num3 = new int[2, 3] { { 0, 1, 2 }, { 3, 4, 5 } };
+int[,] num4 = new int[,] { { 0, 1, 2 }, { 3, 4, 5 } };
+int[,] num5 = new [,]{ { 0, 1, 2 }, { 3, 4, 5 } };
+int[,] num6 = { { 0, 1, 2 }, { 3, 4, 5 } };
+		int[,] num = { { 1, 2, 3 }, { 4, 5, 6 }};
+foreach (int i in num)
+    Console.Write($"{i} ");
+	
+		int[,] umbers = { { 1, 2, 3 }, { 4, 5, 6 }};
+ 
+int rows = umbers.GetUpperBound(0) + 1;    
+int columns = umbers.Length / rows;        
+ 
+for (int i = 0; i < rows; i++)
+{
+    for (int j = 0; j < columns; j++)
+    {
+        Console.Write($"{umbers[i, j]} \t");
+    }
+    Console.WriteLine();
+}
+		int[][] nums = new int[3][];
+nums[0] = new int[2] { 1, 2 };          
+nums[1] = new int[3] { 1, 2, 3 };    
+nums[2] = new int[5] { 1, 2, 3, 4, 5 };
+		
+		
+	}
+}
