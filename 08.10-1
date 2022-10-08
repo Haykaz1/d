@@ -1,0 +1,64 @@
+using System;
+					
+public class Program
+{
+	public static void Main(string[] args)
+	{
+		void SayHello()
+{
+    Console.WriteLine("Hello");
+}
+ 
+SayHello(); 
+SayHello();
+		SayHello(); 
+SayHello(); 
+ 
+
+		void SayHell()
+{
+    Console.WriteLine("Hello");
+}
+		void SayHellRu()
+{
+    Console.WriteLine("Привет");
+}
+void SayHellEn()
+{
+    Console.WriteLine("Hello");
+}
+void SayHellFr()
+{
+    Console.WriteLine("Salut");
+}
+		void SayHelloRu()
+{
+    Console.WriteLine("Привет");
+}
+void SayHelloEn()
+{
+    Console.WriteLine("Hello");
+}
+void SayHelloFr()
+{
+    Console.WriteLine("Salut");
+}
+ 
+ 
+string language = "en";
+ 
+switch (language)
+{
+    case "en": 
+        SayHelloEn();
+        break;
+    case "ru":
+        SayHelloRu();
+        break;
+    case "fr":
+        SayHelloFr();
+        break;
+}
+		void SayHello() => Console.WriteLine("Hello");
+	}
+}
