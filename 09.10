@@ -1,0 +1,58 @@
+using System;
+					
+public class Program
+{
+	public static void Main(string[] args)
+	{
+		void PrintMessage(string message)
+{
+    Console.WriteLine(message);
+}
+ 
+PrintMessage("Hello work");           
+PrintMessage("Hello METANIT.COM");    
+PrintMessage("Hello C#");   
+		void Sum(int x, int y)
+{
+    int result = x + y;
+    Console.WriteLine($"{x} + {y} = {result}");
+}
+ 
+Sum(10, 15);
+		void Su(int x, int y) => Console.WriteLine($"{x} + {y} = { x + y }");
+ 
+int a = 10, b = 15, c = 6;
+Su(a, b);                  
+Su(3, c);                  
+Su(14, 4 + c);  
+		void PrintPerson(string name, int age)
+{
+    Console.WriteLine($"Name: {name}  Age: {age}");
+}
+ 
+PrintPerson("Tom", 24); 
+		void PrintPeron(string name, int age)
+{
+    Console.WriteLine($"Name: {name}  Age: {age}");
+}
+ 
+byte u = 37;
+PrintPeron("Tom", u);
+		void PrintPrson(string name, int age = 1, string company = "Undefined")
+{
+    Console.WriteLine($"Name: {name}  Age: {age}  Company: {company}");
+}
+ 
+PrintPrson("Tom", 37, "Microsoft");  
+PrintPrson("Tom", 37);               
+PrintPrson("Tom"); 
+		void PrntPerson(string name, int age = 1, string company = "Undefined")
+{
+    Console.WriteLine($"Name: {name}  Age: {age}  Company: {company}");
+}
+ 
+PrntPerson("Tom", company:"Microsoft", age: 37);  
+PrntPerson(age:41, name: "Bob");          
+PrntPerson(company:"Google", name:"Sam"); 
+	}
+}
