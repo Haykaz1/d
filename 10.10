@@ -1,0 +1,53 @@
+using System;
+					
+public class Program
+{
+	public static void Main(string[] args)
+	{
+		string GetMessage()
+{
+    return "Hello";
+}
+		
+		string GetMssage()
+{
+    return "Hello";
+}
+ 
+string message = GetMssage(); 
+Console.WriteLine(message);
+		
+		string GetMessge()
+{
+    return "Hello";
+}
+void PrintMessage(string message)
+{
+    Console.WriteLine(message);
+}
+PrintMessage(GetMessge());
+		
+		int Sum(int x, int y)
+		{
+		   return x + y;
+		}
+		
+		int result = Sum(10, 15);
+		Console.WriteLine(result);
+		
+		Console.WriteLine(Sum(5, 6));
+		
+		void PrintPerson(string name, int age)
+{
+    if(age > 120 || age < 1)
+    {
+        Console.WriteLine("Недопустимый возраст");
+        return;
+    }
+    Console.WriteLine($"Имя: {name}  Возраст: {age}");
+}
+ 
+PrintPerson("Tom", 37);         
+PrintPerson("Dunkan", 1234);
+	}
+}
