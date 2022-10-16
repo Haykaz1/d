@@ -1,0 +1,146 @@
+using System;
+					
+Person tom = new Person(); 
+ 
+tom.Print();    
+ 
+class Person 
+{
+    public string name;
+    public int age;
+    public Person()
+    {
+        Console.WriteLine("Создание объекта Person");
+        name = "Tom";
+        age = 37;
+    }
+    public void Print()
+    {
+        Console.WriteLine($"Имя: {name}  Возраст: {age}");
+    }
+}
+__________________________________________________________
+using System;
+
+Person tom = new Person();          
+Person bob = new Person("Bob");     
+Person sam = new Person("Sam", 25); 
+ 
+tom.Print();          
+bob.Print();          
+sam.Print();          
+ 
+class Person 
+{
+    public string name;
+    public int age;
+    public Person() { name = "Неизвестно"; age = 18; }      
+    public Person(string n) { name = n; age = 18; }        
+    public Person(string n, int a) { name = n; age = a; }   
+ 
+    public void Print()
+    {
+        Console.WriteLine($"Имя: {name}  Возраст: {age}");
+    }
+}
+
+__________________________________________________________
+using System;
+
+Person sam = new("Sam", 25); 
+sam.Print();         
+ 
+class Person 
+{
+    public string name;
+    public int age;
+    public Person() { name = "Неизвестно"; age = 18; }
+    public Person(string name) { this.name = name; age = 18; }
+    public Person(string name, int age) 
+    { 
+        this.name = name; 
+        this.age = age; 
+    }
+    public void Print() => Console.WriteLine($"Имя: {name}  Возраст: {age}");
+}
+
+____________________________________________________________________________
+using System;
+
+class Person 
+{
+    public string name;
+    public int age;
+    public Person() : this("Неизвестно")    
+    { }
+    public Person(string name) : this(name, 18) 
+    { }
+    public Person(string name, int age)     
+    {
+        this.name = name;
+        this.age = age;
+    }
+    public void Print() => Console.WriteLine($"Имя: {name}  Возраст: {age}");
+}
+
+____________________________________________________________________________
+using System;
+
+Person tom = new();
+Person bob = new("Bob");
+Person sam = new("Sam", 25);
+ 
+tom.Print();          
+bob.Print();          
+sam.Print();          
+ 
+class Person 
+{
+    public string name;
+    public int age;
+    public Person(string name = "Неизвестно", int age = 18)
+    {
+        this.name = name;
+        this.age = age;
+    }
+    public void Print() => Console.WriteLine($"Имя: {name}  Возраст: {age}");
+}
+
+_____________________________________________________________________________
+Person tom = new Person{ name = "Tom", company = { title = "Microsoft"} };
+tom.Print();          
+ 
+class Person
+{
+    public string name;
+    public Company company;
+    public Person() 
+    { 
+        name = "Undefined";
+        company = new Company();
+    }
+    public void Print() => Console.WriteLine($"Имя: {name}  Компания: {company.title}");
+}
+ 
+class Company
+{
+    public string title = "Unknown";
+}
+
+__________________________________________________________________________________
+class Person
+{
+    string name;
+    int age;
+    public Person(string name, int age)
+    {
+        this.name = name;
+        this.age = age;
+    }
+ 
+    public void Deconstruct(out string personName, out int personAge)
+    {
+        personName = name;
+        personAge = age;
+    }
+}
