@@ -1,0 +1,45 @@
+using System;
+	
+  class Program
+{
+    static void Main(string[] args)
+    {
+        
+        Console.WriteLine("Hello, World!");
+		
+		string hello = "Hello METANIT.COM";
+ 
+Print(hello);
+ 
+void Print(string message)
+{
+    Console.WriteLine(message);
+}
+    }
+	  class Progrm
+{
+    static void Main(string[] args)
+    {
+        string hello = "Hello METANIT.COM";
+ 
+        Print(hello);
+ 
+        void Print(string message)
+        {
+            Console.WriteLine(message);
+        }
+    }
+}
+		  class Proram
+{
+    static void Main(string[] args)
+    {
+        Person tom = new();
+        tom.SayHello();
+    }
+}
+class Person
+{
+    public void SayHello() => Console.WriteLine("Hello");
+}
+}
