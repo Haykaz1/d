@@ -1,0 +1,142 @@
+using System;
+	
+  class Program
+	  
+{
+    static void Main(string[] args)
+    {
+	Person tom = new Person();  
+ 
+tom.name = "Tom";  
+ 
+tom.Print();   
+	}
+struct Person
+{
+    public string name;
+    public int age;
+ 
+    public void Print()
+    {
+        Console.WriteLine($"Имя: {name}  Возраст: {age}");
+    }
+}	
+}
+	  struct Person
+{
+    public string name;
+    public int age;
+ 
+    public void Print()
+    {
+        Console.WriteLine($"Имя: {name}  Возраст: {age}");
+    }
+}
+______________________________________________________________
+Person tom;        
+
+tom.name = "Sam";
+tom.age = 37;
+ 
+tom.Print();    
+ 
+struct Person
+{
+    public string name;
+    public int age;
+ 
+    public void Print()
+    {
+        Console.WriteLine($"Имя: {name}  Возраст: {age}");
+    }
+}
+___________________________________________________________
+Person tom = new Person();
+tom.Print();  
+ 
+struct Person
+{
+   
+    public string name = "Tom";
+    public int age = 1;
+    public Person() { }
+    public void Print() =>Console.WriteLine($"Имя: {name}  Возраст: {age}");
+}
+____________________________________________________________________________
+Person tom = new();
+Person bob = new("Bob");
+Person sam = new("Sam", 25);
+ 
+tom.Print();    
+bob.Print();    
+sam.Print();    
+ 
+struct Person
+{
+    public string name;
+    public int age;
+ 
+    public Person(string name = "Tom", int age = 1)
+    {
+        this.name = name;
+        this.age = age;
+    }
+    public void Print() => Console.WriteLine($"Имя: {name}  Возраст: {age}");
+}
+________________________________________________________________________________
+Person tom = new();
+ 
+tom.Print();   
+ 
+struct Person
+{
+    public string name;
+    public int age;
+ 
+    public Person()
+    {
+        name = "Tom";
+        age = 37;
+    }
+    public void Print() => Console.WriteLine($"Имя: {name}  Возраст: {age}");
+}
+_______________________________________________________________________________
+Person tom = new();
+Person bob = new("Bob");
+Person sam = new("Sam", 25);
+ 
+tom.Print();   
+bob.Print();    
+sam.Print();    
+ 
+struct Person
+{
+    public string name;
+    public int age;
+ 
+    public Person() : this("Tom")
+    { }
+    public Person(string name) : this(name, 1)
+    { }
+    public Person(string name, int age)
+    {
+        this.name = name;
+        this.age = age;
+    }
+    public void Print() => Console.WriteLine($"Имя: {name}  Возраст: {age}");
+}
+______________________________________________________________________________
+Person tom = new Person { name = "Tom", age = 22 };
+ 
+tom.Print();    
+ 
+struct Person
+{
+    public string name;
+    public int age;
+    public void Print() => Console.WriteLine($"Имя: {name}  Возраст: {age}");
+}
+______________________________________________________________________________
+Person tom = new Person { name = "Tom", age = 22 };
+Person bob = tom with { name = "Bob" };
+bob.Print();
