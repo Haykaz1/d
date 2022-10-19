@@ -1,0 +1,152 @@
+using System;
+	
+  class Program
+	  
+{
+    static void Main(string[] args)
+    {
+        Calculate(5);
+    }
+ 
+    static void Calculate(int t)
+    {
+        int x = 6;
+        int y = 7;
+        int z = y + t;  
+		static void Calculate(int t)
+{
+    object x = 6;
+    int y = 7;
+    int z = y + t;
+}
+		State state1 = new State(); 
+Country country1 = new Country(); 
+	}
+struct State
+{
+    public int x;
+    public int y;
+}
+class Country
+{
+    public int x;
+    public int y;
+}
+	  State state1 = new State();
+Country country1 = new Country();
+ 
+struct Stte
+{
+    public int x;
+    public int y;
+    public Contry country;
+    public Stte()
+    {
+        x = 0;
+        y = 0;
+        country = new Contry();
+    }
+}
+class Contry
+{
+    public int x;
+    public int y;
+}
+}
+_______________________________________
+using System;
+	
+     State state1 = new State(); 
+State state2 = new State();
+state2.x = 1;
+state2.y = 2;
+state1 = state2;
+state2.x = 5; 
+Console.WriteLine(state1.x);
+Console.WriteLine(state2.x);
+ 
+Country country1 = new Country(); 
+Country country2 = new Country();
+country2.x = 1;
+country2.y = 4;
+country1 = country2;
+country2.x = 7; 
+
+Console.WriteLine(country1.x); 
+Console.WriteLine(country2.x);  
+_______________________________________
+using System;
+	
+State state1 = new State();
+State state2 = new State();
+ 
+state2.country = new Country();
+state2.country.x = 5;
+state1 = state2;
+state2.country.x = 8; 
+
+Console.WriteLine(state1.country.x); 
+Console.WriteLine(state2.country.x); 
+ 
+struct State
+{
+    public int x;
+    public int y;
+    public Country country;
+    public State()
+    {
+        x = 0;
+        y = 0;
+        country = new Country(); 
+    }
+}
+class Country
+{
+    public int x;
+    public int y;
+}
+____________________________________
+using System;
+	
+Person p = new Person { name = "Tom", age = 23 };
+ChangePerson(p);
+ 
+Console.WriteLine(p.name); 
+Console.WriteLine(p.age); 
+ 
+void ChangePerson(Person person)
+{
+    
+    person.name = "Alice";
+    
+    person = new Person { name = "Bill", age = 45 };
+    Console.WriteLine(person.name);
+}
+ 
+class Person
+{
+    public string name = "";
+    public int age;
+}
+____________________________________________________
+using System;
+	
+Person p = new Person { name = "Tom", age = 23 };
+ChangePerson(ref p);
+ 
+Console.WriteLine(p.name);
+Console.WriteLine(p.age); 
+ 
+void ChangePerson(ref Person person)
+{
+   
+    person.name = "Alice";
+   
+    person = new Person { name = "Bill", age = 45 };
+}
+ 
+class Person
+{
+    public string name = "";
+    public int age;
+}
