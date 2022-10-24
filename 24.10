@@ -1,0 +1,39 @@
+using System;
+namespace Base;
+class Company
+{
+    string title;
+    public Company(string title) => this.title = title;
+    public void Print() => Console.WriteLine($"Компания: {title}");
+}
+___________________________________________________________________
+using System;
+using Base;
+ 
+class Person
+{
+    string name;
+    Company company;
+    public Person(string name, Company company)
+    {
+        this.name = name;
+        this.company = company;
+    }
+    public void Print()
+    {
+        Console.WriteLine($"Имя: {name}");
+        company.Print();
+    }
+}
+_____________________________________________________________
+using Base;
+ 
+Company microsoft = new("Microsoft");
+Person tom = new("Tom", microsoft);
+tom.Print();
+______________________________________________________________
+global using Base;
+ 
+Company microsoft = new("Microsoft");
+Person tom = new("Tom", microsoft);
+tom.Print();
