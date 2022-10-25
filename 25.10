@@ -1,0 +1,54 @@
+using System;
+
+class State
+{
+    string defaultVar ="default";
+    private string privateVar = "private";
+    protected private string protectedPrivateVar = "protected private";
+    protected string protectedVar = "protected";
+    internal string internalVar = "internal";
+    protected internal string protectedInternalVar = "protected internal";
+    public string publicVar = "public";
+ 
+    void Print() => Console.WriteLine(defaultVar);
+ 
+    private void PrintPrivate() => Console.WriteLine(privateVar);
+ 
+    protected private void PrintProtectedPrivate() => Console.WriteLine(protectedPrivateVar);
+ 
+    protected void PrintProtected() => Console.WriteLine(protectedVar);
+ 
+    internal void PrintInternal() => Console.WriteLine(internalVar);
+ 
+    protected internal void PrintProtectedInternal() => Console.WriteLine(protectedInternalVar);
+ 
+    public void PrintPublic() => Console.WriteLine(publicVar);
+}
+class StateConsumer
+{
+    public void PrintState()
+    {
+        State state = new State();
+ 
+        state.PrintInternal();    
+ 
+        state.PrintProtectedInternal();  
+ 
+        state.PrintPublic();      
+    }
+}
+__________________________________________________________________________________________________
+using System;
+
+namespace MyLib;
+public class PublicState
+{
+    internal void PrintInternal() => Console.WriteLine("internal");
+    protected internal void PrintProtectedInternal() => Console.WriteLine("protected internal");
+    public void PrintPublic() => Console.WriteLine("public");
+ 
+}
+ 
+class DefaultlState { }
+internal class InternalState{  }
+_______________________________________________________________________________________________________
