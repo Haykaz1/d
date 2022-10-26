@@ -1,0 +1,185 @@
+using System;
+					
+public class Program
+{
+	public static void Main(string[] args)
+	{
+	Person person = new Person();
+ 
+person.Name = "Tom";
+ 
+string personName = person.Name;
+Console.WriteLine(personName);  
+ 
+	}
+class Person
+{
+    private string name = "Undefined";
+ 
+    public string Name
+    {
+        get
+        {
+            return name;   
+        }
+        set
+        {
+            name = value;   
+        }
+    }
+}
+}
+_______________________________________________________________________
+using System;
+					
+public class Program
+{
+	public static void Main(string[] args)
+	{
+	    Person person = new Person();
+ 
+Console.WriteLine(person.Age);  
+person.Age = 37;
+Console.WriteLine(person.Age); 
+person.Age = -23;               
+Console.WriteLine(person.Age); 
+}
+class Person
+{
+    int age = 1;
+    public int Age
+    {
+        set
+        {
+            if (value < 1 || value > 120)
+                Console.WriteLine("Возраст должен быть в диапазоне от 1 до 120");
+            else
+                age = value;
+        }
+        get { return age; }
+    }
+}
+}
+__________________________________________________________________________________
+using System;
+					
+public class Program
+{
+	public static void Main(string[] args)
+	{
+	    Person person = new Person();
+ 
+Console.WriteLine(person.Name);  
+person.Age = 37;
+ 
+person.Print();
+}
+class Person
+{
+    string name = "Tom";
+    int age = 1;
+    
+    public int Age
+    {
+        set { age = value; }
+    }
+   
+    public string Name
+    {
+        get { return name; }
+    }
+ 
+    public void Print()=> Console.WriteLine($"Name: {name}  Age: {age}");
+}
+}
+_________________________________________________________________________
+using System;
+					
+public class Program
+{
+	public static void Main(string[] args)
+	{
+	    Person tom = new("Tom", "Smith");
+Console.WriteLine(tom.Name);    
+}
+class Person
+{
+    string firstName;
+    string lastName;
+    public string Name
+    {
+        get { return  $"{firstName} {lastName}"; }
+    }
+    public Person(string firstName, string lastName)
+    {
+        this.firstName = firstName; 
+        this.lastName = lastName;
+    }
+}
+}
+______________________________________________________________________
+using System;
+					
+public class Program
+{
+	public static void Main(string[] args)
+	{
+	    Person tom = new("Tom");
+ 
+Console.WriteLine(tom.Name);
+} 
+class Person
+{
+    string name = "";
+    public string Name
+    {
+        get { return name; }
+ 
+        private set { name = value; }
+    }
+    public Person(string name) => Name = name;
+}
+}
+________________________________________________________________
+using System;
+					
+{
+		Person tom = new();
+ 
+Console.WriteLine(tom.Name);    
+Console.WriteLine(tom.Age);    
+}
+class Person
+{
+    public string Name { get; set; } = "Tom";
+    public int Age { get; set; } = 37;
+}
+_____________________________________________________________
+using System;
+					
+var person = new Person() { Name = "Sam" };
+Console.WriteLine(person.Name);    
+Console.WriteLine(person.Email);   
+public class Person
+{
+    string name = "";
+    public string Name
+    {
+        get { return name; }
+        init
+        {
+            name = value;
+            Email = $"{value}@gmail.com";
+        }
+    }
+    public string Email { get; init; } = "";
+}
+_____________________________________________________________
+using System;
+					
+class Person
+{
+    string name;
+     
+    public string Name => name;
+}
