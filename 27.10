@@ -1,0 +1,121 @@
+using System;
+
+Person bob = new(68);
+bob.СheckAge();     
+ 
+Person tom = new(37);
+tom.СheckAge();     
+
+Console.WriteLine(Person.retirementAge); 
+Person.retirementAge = 67;
+ 
+class Person
+{
+    int age;
+    public static int retirementAge = 65;
+    public Person(int age)
+    {
+        this.age = age;
+    }
+    public void СheckAge()
+    {
+        if (age >= retirementAge)
+            Console.WriteLine("Уже на пенсии");
+        else
+            Console.WriteLine($"Сколько лет осталось до пенсии: {retirementAge - age}");
+    }
+}
+____________________________________________________________________________________________
+using System;
+
+Person bob = new(68);
+bob.СheckAge();
+ 
+Console.WriteLine(Person.RetirementAge); 
+ 
+class Person
+{
+    int age;
+    static int retirementAge = 65;
+    public static int RetirementAge
+    {
+        get { return retirementAge; }
+        set { if (value > 1 && value < 100) retirementAge = value; }
+    }
+    public Person(int age)
+    {
+        this.age = age;
+    }
+    public void СheckAge()
+    {
+        if (age >= retirementAge)
+            Console.WriteLine("Уже на пенсии");
+        else
+            Console.WriteLine($"Сколько лет осталось до пенсии: {retirementAge - age}") ;
+    }
+}
+_______________________________________________________________________________________________
+using System;
+
+var tom = new Person();
+var bob = new Person();
+var sam = new Person();
+Console.WriteLine(Person.Counter);  
+ 
+class Person
+{
+    static int counter = 0;
+    public static int Counter => counter;
+    public Person()
+    {
+        counter++;
+    }
+}
+___________________________________________________________________________________________________
+using System;
+
+Person bob = new(68);
+Person.CheckRetirementStatus(bob);
+ 
+class Person
+{
+    public int Age { get; set; }
+    static int retirementAge = 65;
+    public Person(int age) => Age = age;
+    public static void CheckRetirementStatus(Person person)
+    {
+        if (person.Age >= retirementAge)
+            Console.WriteLine("Уже на пенсии");
+        else
+            Console.WriteLine($"Сколько лет осталось до пенсии: {retirementAge - person.Age}") ;
+    }
+}
+_______________________________________________________________________________________________________
+using System;
+Console.WriteLine(Person.RetirementAge);
+ 
+class Person
+{
+    static int retirementAge;
+    public static int RetirementAge => retirementAge;
+    static Person()
+    {
+        if (DateTime.Now.Year == 2022)
+            retirementAge = 65;
+        else
+            retirementAge = 67;
+    }
+}
+_________________________________________________________________________________________________________
+using System;
+
+Console.WriteLine(Operations.Add(5, 4));        
+Console.WriteLine(Operations.Subtract(5, 4));   
+Console.WriteLine(Operations.Multiply(5, 4));    
+ 
+static class Operations
+{
+    public static int Add(int x, int y) => x + y;
+    public static int Subtract(int x, int y) => x - y;
+    public static int Multiply(int x, int y) => x * y;
+}
