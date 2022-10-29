@@ -1,0 +1,35 @@
+using System;
+
+int? val = null;
+IsNull(val);    
+val = 22;
+IsNull(val);    
+ 
+void IsNull(int? obj)
+{
+    if (obj == null) Console.WriteLine("null");
+    else Console.WriteLine(obj);
+}
+PrintNullable(5);       
+PrintNullable(null);    
+ 
+void PrintNullable(int? number)
+{
+    if (number.HasValue)
+    {
+        Console.WriteLine(number.Value);
+        
+        Console.WriteLine(number);
+    }
+    else
+    {
+        Console.WriteLine("параметр равен null");
+    }
+}
+int? number = null;
+Console.WriteLine(number.GetValueOrDefault());      
+Console.WriteLine(number.GetValueOrDefault(10));    
+ 
+number = 15;    
+Console.WriteLine(number.GetValueOrDefault());    
+Console.WriteLine(number.GetValueOrDefault(10));
