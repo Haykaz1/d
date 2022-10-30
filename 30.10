@@ -1,0 +1,60 @@
+using System;
+public class Program
+{
+	public static void Main()
+	{
+		void PrintUpper(string? text)
+{
+    if (text is  null) return;
+    Console.WriteLine(text.ToUpper());
+}
+void PritUpper(string? text)
+{
+    if (text!=null)
+    {
+        Console.WriteLine(text.ToUpper());
+    }    
+}
+void PrintUper(string? text)
+{
+    if (text is string)
+        Console.WriteLine(text.ToUpper());
+    else
+        Console.WriteLine("NULL");
+}
+		string? text = null;
+string name = text ?? "Tom";  
+Console.WriteLine(name);   
+ 
+int? id = 200;
+int personid = id ?? 1; 
+Console.WriteLine(personid);
+		
+		string? text1 = null;
+text ??= "Sam";
+Console.WriteLine(text);    
+ 
+int? ide = 100;
+id ??= 1;
+Console.WriteLine(id); 
+}
+}
+_________________________________________________
+using System;
+
+void PrintWebSite(Person? person)
+{
+    if (person != null && person.Company != null && person.Company.WebSite != null)
+    {
+        Console.WriteLine(person.Company.WebSite.ToUpper());
+    }
+}
+
+class Person
+{
+    public Company? Company { get; set; }   
+}
+class Company
+{
+    public string? WebSite { get; set; }    
+}
