@@ -1,0 +1,31 @@
+using System;
+using printer = System.Console;
+using User = Person;
+
+printer.WriteLine("Laudate omnes gentes laudate");
+printer.WriteLine("Magnificat in secula");
+ 
+User tom = new User("Tom");
+printer.WriteLine(tom.Name);    
+ 
+class Person
+{
+    public string Name { get; set; }
+    public Person(string name) => Name = name;
+}
+_____________________________________________________
+using System;
+
+using static System.Console;
+using static Operation;
+ 
+WriteLine(Sum(5, 4));       // 9
+WriteLine(Subtract(5, 4));  // 1
+WriteLine(Multiply(5, 4)); // 20
+ 
+static class Operation
+{
+    public static int Sum(int a, int b) => a + b;
+    public static int Subtract(int a, int b) => a - b;
+    public static int Multiply(int a, int b) => a * b;
+}
