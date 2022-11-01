@@ -1,0 +1,49 @@
+using System;
+
+try
+{
+    int x = 5;
+    int y = x / 0;
+    Console.WriteLine($"Результат: {y}");
+}
+catch
+{
+    Console.WriteLine("Возникло исключение!");
+}
+finally
+{
+    Console.WriteLine("Блок finally");
+}
+Console.WriteLine("Конец программы");
+______________________________________________
+using System;
+
+public class Program
+{
+	public static void Main()
+	{
+
+Square("12"); 
+Square("ab"); 
+ 
+void Square(string data)
+{
+    int x = int.Parse(data);
+    Console.WriteLine($"Квадрат числа {x}: {x * x}");
+}
+Squre("12"); 
+Squre("ab"); 
+ 
+void Squre(string data)
+{
+    if (int.TryParse(data, out var x))
+    {
+        Console.WriteLine($"Квадрат числа {x}: {x * x}");
+    }
+    else
+    {
+        Console.WriteLine("Некорректный ввод");
+    }
+}
+}
+}
