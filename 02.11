@@ -1,0 +1,89 @@
+using System;
+
+public class Program
+{
+	public static void Main()
+	{
+try
+{
+    int x = 5;
+    int y = x / 0;
+    Console.WriteLine($"Результат: {y}");
+}
+catch(DivideByZeroException)
+{
+    Console.WriteLine("Возникло исключение DivideByZeroException");
+}
+
+	}
+}
+____________________________________________________________________
+using System;
+
+public class Program
+{
+	public static void Main()
+	{
+try
+{
+    int x = 5;
+    int y = x / 0;
+    Console.WriteLine($"Результат: {y}");
+}
+catch(DivideByZeroException ex)
+{
+    Console.WriteLine($"Возникло исключение {ex.Message}");
+}
+}		
+}
+_________________________________________________________________
+using System;
+
+public class Program
+{
+	public static void Main()
+	{
+		int x = 1;
+int y = 0;
+ 
+try
+{
+    int result1 = x / y;
+    int result2 = y / x;
+}
+catch (DivideByZeroException) when (y == 0)
+{
+    Console.WriteLine("y не должен быть равен 0");
+}
+catch(DivideByZeroException ex)
+{
+    Console.WriteLine(ex.Message);
+}
+	}		
+}
+______________________________________________________________
+using System;
+
+public class Program
+{
+	public static void Main()
+	{
+		int x = 0;
+int y = 1;
+ 
+try
+{
+    int result1 = x / y;
+    int result2 = y / x;
+}
+catch (DivideByZeroException) when (y == 0)
+{
+    Console.WriteLine("y не должен быть равен 0");
+}
+catch(DivideByZeroException ex)
+{
+    Console.WriteLine(ex.Message);
+}
+	}		
+}
+______________________________________________________________
