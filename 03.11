@@ -1,0 +1,98 @@
+using System;
+
+public class Program
+{
+	public static void Main()
+	{
+		try
+{
+    int x = 5;
+    int y = x / 0;
+    Console.WriteLine($"Результат: {y}");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Исключение: {ex.Message}");
+    Console.WriteLine($"Метод: {ex.TargetSite}");
+    Console.WriteLine($"Трассировка стека: {ex.StackTrace}");
+}
+	}		
+}
+__________________________________________________________________________
+using System;
+
+public class Program
+{
+	static void Main(string[] args)
+{
+    try
+    {
+        int[] numbers = new int[4];
+        numbers[7] = 9;     
+ 
+        int x = 5;
+        int y = x / 0; 
+        Console.WriteLine($"Результат: {y}");
+    }
+    catch (DivideByZeroException)
+    {
+        Console.WriteLine("Возникло исключение DivideByZeroException");
+    }
+    catch (IndexOutOfRangeException ex)
+    {
+        Console.WriteLine(ex.Message);
+    }
+             
+    Console.Read();
+	}
+}
+___________________________________________________________________________
+using System;
+
+public class Program
+{
+	static void Main(string[] args)
+	{
+    	try
+{
+    object obj = "you";
+    int num = (int)obj;     
+    Console.WriteLine($"Результат: {num}");
+}
+catch (DivideByZeroException)
+{
+    Console.WriteLine("Возникло исключение DivideByZeroException");
+}
+catch (IndexOutOfRangeException)
+{
+    Console.WriteLine("Возникло исключение IndexOutOfRangeException");
+}
+	}
+}
+___________________________________________________________________________
+using System;
+
+public class Program
+{
+	static void Main(string[] args)
+	{
+    	try
+{
+    object obj = "you";
+    int num = (int)obj;
+    Console.WriteLine($"Результат: {num}");
+}
+catch (DivideByZeroException)
+{
+    Console.WriteLine("Возникло исключение DivideByZeroException");
+}
+catch (IndexOutOfRangeException)
+{
+    Console.WriteLine("Возникло исключение IndexOutOfRangeException");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Исключение: {ex.Message}");
+}
+	}
+}
