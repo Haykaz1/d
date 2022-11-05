@@ -1,0 +1,173 @@
+using System;
+
+Message mes;            
+mes = Hello;            
+mes();                  
+ 
+void Hello() => Console.WriteLine("Hello METANIT.COM");
+ 
+delegate void Message();
+_________________________________________________________________
+using System;
+
+Message message1 = Welcome.Print;
+Message message2 = new Hello().Display;
+ 
+message1(); 
+message2(); 
+ 
+delegate void Message();
+ 
+class Welcome
+{
+    public static void Print() => Console.WriteLine("Welcome");
+}
+class Hello
+{
+    public void Display() => Console.WriteLine("Привет");
+}
+__________________________________________________________________
+using System;
+
+class Program
+{
+    delegate void Message();
+    static void Main()
+    {
+        Message mes;            
+        mes = Hello;            
+        mes();                 
+ 
+        void Hello() => Console.WriteLine("Hello METANIT.COM");
+    }
+}
+_____________________________________________________________________
+using System;
+
+delegate void Message(); 
+class Program
+{
+    static void Main()
+    {
+        Message mes;            
+        mes = Hello;           
+        mes();                  
+ 
+        void Hello() => Console.WriteLine("Hello METANIT.COM");
+    }
+}
+____________________________________________________________________
+using System;
+
+Operation operation = Add;      
+int result = operation(4, 5);   
+Console.WriteLine(result);      
+     
+operation = Multiply;           
+result = operation(4, 5);       
+Console.WriteLine(result);      
+ 
+int Add(int x, int y) => x + y;
+ 
+int Multiply(int x, int y) => x * y;
+ 
+delegate int Operation(int x, int y);
+______________________________________________________________-
+using System;
+
+Message message = Hello;
+message += HowAreYou;  
+message();              
+ 
+void Hello() => Console.WriteLine("Hello");
+void HowAreYou() => Console.WriteLine("How are you?");
+ 
+delegate void Message();
+______________________________________________________________
+using System;
+
+Message mes1 = Hello;
+Message mes2 = HowAreYou;
+Message mes3 = mes1 + mes2; 
+mes3(); 
+ 
+void Hello() => Console.WriteLine("Hello");
+void HowAreYou() => Console.WriteLine("How are you?");
+ 
+delegate void Message();
+____________________________________________________________
+using System;
+
+Message mes = Hello;
+mes();
+Operation op = Add;
+int n = op(3, 4);
+Console.WriteLine(n);
+ 
+void Hello() => Console.WriteLine("Hello");
+int Add(int x, int y) => x + y;
+ 
+delegate int Operation(int x, int y);
+delegate void Message();
+____________________________________________________________
+using System;
+
+Operation<decimal, int> squareOperation = Square;
+decimal result1 = squareOperation(5);
+Console.WriteLine(result1); 
+ 
+Operation<int, int> doubleOperation = Double;
+int result2 = doubleOperation(5);
+Console.WriteLine(result2); 
+ 
+decimal Square(int n) => n * n;
+int Double(int n) => n + n;
+ 
+delegate T Operation<T, K>(K val);
+___________________________________________________________
+using System;
+
+DoOperation(5, 4, Add);         
+DoOperation(5, 4, Subtract);    
+DoOperation(5, 4, Multiply);    
+ 
+void DoOperation(int a, int b, Operation op)
+{
+    Console.WriteLine(op(a,b));
+}
+int Add(int x, int y) => x + y;
+int Subtract(int x, int y) => x - y;
+int Multiply(int x, int y) => x * y;
+ 
+delegate int Operation(int x, int y);
+________________________________________________________
+using System;
+
+Operation operation = SelectOperation(OperationType.Add);
+Console.WriteLine(operation(10, 4));    
+ 
+operation = SelectOperation(OperationType.Subtract);
+Console.WriteLine(operation(10, 4));    
+ 
+operation = SelectOperation(OperationType.Multiply);
+Console.WriteLine(operation(10, 4));    
+ 
+Operation SelectOperation(OperationType opType)
+{
+    switch (opType)
+    {
+        case OperationType.Add: return Add;
+        case OperationType.Subtract: return Subtract;
+        default: return Multiply;
+    }
+}
+ 
+int Add(int x, int y) => x + y;
+int Subtract(int x, int y) => x - y;
+int Multiply(int x, int y) => x * y;
+ 
+enum OperationType
+{
+    Add, Subtract, Multiply
+}
+delegate int Operation(int x, int y);
