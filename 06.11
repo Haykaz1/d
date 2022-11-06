@@ -1,0 +1,46 @@
+using System;
+
+ShowMessage("hello!", delegate (string mes)
+{
+    Console.WriteLine(mes);
+});
+ 
+static void ShowMessage(string message, MessageHandler handler)
+{
+    handler(message);
+}
+ 
+delegate void MessageHandler(string message);
+__________________________________________________________________
+using System;
+
+MessageHandler handler = delegate
+{
+    Console.WriteLine("анонимный метод");
+};
+handler("hello world!");    
+ 
+delegate void MessageHandler(string message);
+____________________________________________________________________
+using System;
+
+Operation operation = delegate (int x, int y)
+{
+    return x + y;
+};
+int result = operation(4, 5);
+Console.WriteLine(result);      
+ 
+delegate int Operation(int x, int y);
+____________________________________________________________________
+using System;
+
+int z = 8;
+Operation operation = delegate (int x, int y)
+{
+    return x + y + z;
+};
+int result = operation(4, 5);
+Console.WriteLine(result);    
+ 
+delegate int Operation(int x, int y);
