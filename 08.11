@@ -1,0 +1,165 @@
+using System;
+
+Account account = new Account(100);
+account.Put(20);    
+Console.WriteLine($"Сумма на счете: {account.Sum}");
+account.Take(70);   
+Console.WriteLine($"Сумма на счете: {account.Sum}");
+account.Take(180);  
+Console.WriteLine($"Сумма на счете: {account.Sum}");
+
+class Account
+{
+    public int Sum { get; private set; }
+    public Account(int sum) => Sum = sum;
+    public void Put(int sum) => Sum += sum;
+    public void Take(int sum)
+    {
+        if (Sum >= sum)
+        {
+            Sum -= sum;
+        }
+    }
+}
+_______________________________________________________
+using System;
+
+Account account = new Account(100);
+account.Notify += DisplayMessage;   
+account.Put(20);   
+Console.WriteLine($"Сумма на счете: {account.Sum}");
+account.Take(70);   
+Console.WriteLine($"Сумма на счете: {account.Sum}");
+account.Take(180);  
+Console.WriteLine($"Сумма на счете: {account.Sum}");
+ 
+void DisplayMessage(string message) => Console.WriteLine(message);
+
+class Account
+{
+    public delegate void AccountHandler(string message);
+    public event AccountHandler Notify;            
+    public Account(int sum) => Sum = sum;
+    public int Sum { get; private set; }
+    public void Put(int sum)
+    {
+        Sum += sum;
+        Notify?.Invoke($"На счет поступило: {sum}");   
+    }
+    public void Take(int sum)
+    {
+        if (Sum >= sum)
+        {
+            Sum -= sum;
+            Notify?.Invoke($"Со счета снято: {sum}");  
+        }
+        else
+        {
+            Notify?.Invoke($"Недостаточно денег на счете. Текущий баланс: {Sum}"); ;
+        }
+    }
+}
+___________________________________________________________________________________________
+using System;
+
+Account acc = new Account(100);
+acc.Notify += DisplayMessage;       
+acc.Put(20);   
+acc.Notify -= DisplayMessage;    
+acc.Put(20);    
+ 
+void DisplayMessage(string message) => Console.WriteLine(message);
+
+class Account
+{
+    public delegate void AccountHandler(string message);
+    AccountHandler notify;
+    public event AccountHandler Notify
+    {
+        add
+        {
+            notify += value;
+            Console.WriteLine($"{value.Method.Name} добавлен");
+        }
+        remove
+        {
+            notify -= value;
+            Console.WriteLine($"{value.Method.Name} удален");
+        }
+    }
+    public Account(int sum) => Sum = sum;
+    public int Sum { get; private set; }
+    public void Put(int sum)
+    {
+        Sum += sum;
+        notify?.Invoke($"На счет поступило: {sum}");   
+    }
+    public void Take(int sum)
+    {
+        if (Sum >= sum)
+        {
+            Sum -= sum;
+            notify?.Invoke($"Со счета снято: {sum}");   
+        }
+        else
+        {
+            notify?.Invoke($"Недостаточно денег на счете. Текущий баланс: {Sum}"); ;
+        }
+    }
+}
+_______________________________________________________________________________________________
+using System;
+
+
+Account acc = new Account(100);
+acc.Notify += DisplayMessage;
+acc.Put(20);
+acc.Take(70);
+acc.Take(150);
+ 
+void DisplayMessage(Account sender, AccountEventArgs e)
+{
+    Console.WriteLine($"Сумма транзакции: {e.Sum}");
+    Console.WriteLine(e.Message);
+    Console.WriteLine($"Текущая сумма на счете: {sender.Sum}");
+}
+class AccountEventArgs
+{
+    
+    public string Message{get;}
+    
+    public int Sum {get;}
+    public AccountEventArgs(string message, int sum)
+    {
+        Message = message;
+        Sum = sum;
+    }
+}
+
+class Account
+{
+    public delegate void AccountHandler(Account sender, AccountEventArgs e);
+    public event AccountHandler Notify;
+     
+    public int Sum { get; private set; }
+     
+    public Account(int sum) => Sum = sum;
+     
+    public void Put(int sum)
+    {
+        Sum += sum;
+        Notify?.Invoke(this, new AccountEventArgs($"На счет поступило {sum}", sum));
+    }
+    public void Take(int sum)
+    {
+        if (Sum >= sum)
+        {
+            Sum -= sum;
+            Notify?.Invoke(this, new AccountEventArgs($"Сумма {sum} снята со счета", sum));
+        }
+        else
+        {
+            Notify?.Invoke(this, new AccountEventArgs("Недостаточно денег на счете", sum));
+        }
+    }
+}
