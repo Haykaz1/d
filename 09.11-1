@@ -1,0 +1,27 @@
+using System;
+
+DoOperation(10, 6, Add);        
+DoOperation(10, 6, Multiply);   
+ 
+void DoOperation(int a, int b, Action<int, int> op) => op(a, b);
+ 
+void Add(int x, int y) => Console.WriteLine($"{x} + {y} = {x + y}");
+void Multiply(int x, int y) => Console.WriteLine($"{x} * {y} = {x * y}");
+________________________________________________________________________________
+using System;
+
+int result1 = DoOperation(6, DoubleNumber); 
+Console.WriteLine(result1);
+ 
+int result2 = DoOperation(6, SquareNumber); 
+Console.WriteLine(result2);
+ 
+int DoOperation(int n, Func<int, int> operation) => operation(n);
+int DoubleNumber(int n) => 2 * n;
+int SquareNumber(int n) => n * n;
+________________________________________________________________________________
+using System;
+
+Func<int, int, string> createString = (a, b) => $"{a}{b}";
+Console.WriteLine(createString(1, 5));  
+Console.WriteLine(createString(3, 5));
