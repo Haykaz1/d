@@ -1,0 +1,126 @@
+using System;
+MessageBuilder messageBuilder = WriteEmailMessage; 
+Message message = messageBuilder("Hello");
+message.Print();    
+ 
+EmailMessage WriteEmailMessage(string text) => new EmailMessage(text);
+ 
+delegate Message MessageBuilder(string text);				
+class Message
+{
+    public string Text { get; }
+    public Message(string text) => Text = text;
+    public virtual void Print() => Console.WriteLine($"Message: {Text}");
+}
+class EmailMessage: Message
+{
+    public EmailMessage(string text): base(text) { }
+    public override void Print() => Console.WriteLine($"Email: {Text}");
+}
+class SmsMessage : Message
+{
+    public SmsMessage(string text) : base(text) { }
+    public override void Print() => Console.WriteLine($"Sms: {Text}");
+}
+___________________________________________________________________________
+using System;
+
+EmailReceiver emailBox = ReceiveMessage; 
+emailBox(new EmailMessage("Welcome"));  
+ 
+void ReceiveMessage(Message message) => message.Print();
+delegate void EmailReceiver(EmailMessage message);	
+
+class Message
+{
+    public string Text { get; }
+    public Message(string text) => Text = text;
+    public virtual void Print() => Console.WriteLine($"Message: {Text}");
+}
+class EmailMessage: Message
+{
+    public EmailMessage(string text): base(text) { }
+    public override void Print() => Console.WriteLine($"Email: {Text}");
+}
+class SmsMessage : Message
+{
+    public SmsMessage(string text) : base(text) { }
+    public override void Print() => Console.WriteLine($"Sms: {Text}");
+}
+____________________________________________________________________________________________
+using System;
+
+MessageBuilder<EmailMessage> EmailMessageWriter = (string text) => new EmailMessage(text);
+MessageBuilder<Message> messageBuilder = EmailMessageWriter;     
+Message message = messageBuilder("hello Tom");
+message.Print(); 
+delegate T MessageBuilder<out T>(string text);
+
+class Message
+{
+    public string Text { get; }
+    public Message(string text) => Text = text;
+    public virtual void Print() => Console.WriteLine($"Message: {Text}");
+}
+class EmailMessage: Message
+{
+    public EmailMessage(string text): base(text) { }
+    public override void Print() => Console.WriteLine($"Email: {Text}");
+}
+class SmsMessage : Message
+{
+    public SmsMessage(string text) : base(text) { }
+    public override void Print() => Console.WriteLine($"Sms: {Text}");
+}
+_______________________________________________________________________________________________
+using System;
+
+MessageReceiver<Message> messageReceiver = (Message message) => message.Print();
+MessageReceiver<EmailMessage> emailMessageReceiver = messageReceiver; 
+messageReceiver(new Message("Hello World!"));       
+messageReceiver(new EmailMessage("Hello World!"));  
+ 
+delegate void MessageReceiver<in T>(T message);
+
+class Message
+{
+    public string Text { get; }
+    public Message(string text) => Text = text;
+    public virtual void Print() => Console.WriteLine($"Message: {Text}");
+}
+class EmailMessage: Message
+{
+    public EmailMessage(string text): base(text) { }
+    public override void Print() => Console.WriteLine($"Email: {Text}");
+}
+class SmsMessage : Message
+{
+    public SmsMessage(string text) : base(text) { }
+    public override void Print() => Console.WriteLine($"Sms: {Text}");
+}
+____________________________________________________________________________________________
+using System;
+
+MessageConverter<Message, EmailMessage> toEmailConverter = (Message message) => new EmailMessage(message.Text);
+MessageConverter<SmsMessage, Message> converter = toEmailConverter;
+Message message = converter(new SmsMessage("Hello work"));
+message.Print(); 
+ 
+delegate E MessageConverter<in M, out E>(M message);
+
+class Message
+{
+    public string Text { get; }
+    public Message(string text) => Text = text;
+    public virtual void Print() => Console.WriteLine($"Message: {Text}");
+}
+class EmailMessage: Message
+{
+    public EmailMessage(string text): base(text) { }
+    public override void Print() => Console.WriteLine($"Email: {Text}");
+}
+class SmsMessage : Message
+{
+    public SmsMessage(string text) : base(text) { }
+    public override void Print() => Console.WriteLine($"Sms: {Text}");
+}
