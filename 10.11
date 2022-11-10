@@ -1,0 +1,79 @@
+using System;
+
+var fn = Outer();  
+
+fn();  
+fn();  
+fn();
+fn(); 
+ 
+Action Outer()  
+{
+    int x = 5;  
+    void Inner()    
+    {
+        x++;        
+        Console.WriteLine(x);
+    }
+    return Inner;  
+}
+_____________________________________________________
+using System;
+
+var outerFn = () =>
+{
+    int x = 10;
+    var innerFn = () => Console.WriteLine(++x);
+    return innerFn;
+};
+ 
+var fn = outerFn();   
+fn();   
+fn();   
+fn();
+______________________________________________________
+using System;
+
+var fn = Multiply(5);  
+ 
+Console.WriteLine(fn(5));   
+Console.WriteLine(fn(6));   
+Console.WriteLine(fn(7));   
+ 
+Operation Multiply(int n)
+{
+    int Inner(int m)
+    {
+        return n * m;
+    }
+    return Inner;
+}
+delegate int Operation(int n);
+_________________________________________________________
+using System;
+
+var fn = Multiply(5);  
+ 
+Console.WriteLine(fn(5));   
+Console.WriteLine(fn(18));   
+Console.WriteLine(fn(7));   
+ 
+Operation Multiply(int n)
+{
+    int Inner(int m)
+    {
+        return n * m;
+    }
+    return Inner;
+}
+delegate int Operation(int n);
+__________________________________________________________
+using System;
+
+var multiply = (int n) => (int m) => n * m; 
+ 
+var fn = multiply(5);  
+ 
+Console.WriteLine(fn(5));   
+Console.WriteLine(fn(6));   
+Console.WriteLine(fn(7)); 
