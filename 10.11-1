@@ -1,0 +1,36 @@
+using System;
+Console.WriteLine(IMovable.maxSpeed);   
+Console.WriteLine(IMovable.minSpeed); 
+interface IMovable
+{
+    const int minSpeed = 0;
+    static int maxSpeed = 60;   
+    void Move();                
+    string Name { get; set; }  
+     
+    delegate void MoveHandler(string message);  
+    event MoveHandler MoveEvent;   
+}
+________________________________________________________________________________
+using System;   
+
+Console.WriteLine(IMovable.MaxSpeed);   
+IMovable.MaxSpeed = 65;
+Console.WriteLine(IMovable.MaxSpeed);  
+double time = IMovable.GetTime(500, 10);
+Console.WriteLine(time);   
+ 
+interface IMovable
+{
+    public const int minSpeed = 0;     
+    private static int maxSpeed = 60;   
+    static double GetTime(double distance, double speed) => distance / speed;
+    static int MaxSpeed
+    {
+        get => maxSpeed;
+        set
+        {
+            if (value > 0) maxSpeed = value;
+        }
+    }
+}
