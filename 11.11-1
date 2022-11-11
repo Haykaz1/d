@@ -1,0 +1,87 @@
+using System;   
+
+BaseAction baseAction1 = new BaseAction();
+ 
+((IAction)baseAction1).Move();   
+if (baseAction1 is IAction action) action.Move();
+IAction baseAction2 = new BaseAction();
+baseAction2.Move();
+interface IAction
+{
+    void Move();
+}
+class BaseAction : IAction
+{
+    void IAction.Move() => Console.WriteLine("Move in Base Class");
+}
+_______________________________________________________________________________
+using System;   
+Person person = new Person();
+ 
+((ISchool)person).Study();
+((IUniversity)person).Study();
+class Person : ISchool, IUniversity
+{
+    public void Study() => Console.WriteLine("Учеба в школе или в университете");
+}
+interface ISchool
+{
+    void Study();
+}
+interface IUniversity
+{
+    void Study();
+}
+__________________________________________________________________________________________
+using System;   
+
+HeroAction action1 = new HeroAction();
+action1.Move();          
+((IAction)action1).Move(); 
+ 
+IAction action2 = new HeroAction();
+action2.Move();  
+
+interface IAction
+{
+    void Move();
+}
+class BaseAction : IAction
+{
+    public void Move() =>Console.WriteLine("Move in BaseAction");
+}
+class HeroAction : BaseAction, IAction
+{
+    void IAction.Move() => Console.WriteLine("Move in HeroAction");
+}
+___________________________________________________________________________________________
+using System;   
+
+IMovable tom = new Person("Tom");
+tom.MoveEvent += () => Console.WriteLine($"{tom.Name} is moving");
+tom.Move();
+ 
+interface IMovable
+{
+    protected internal void Move();
+    protected internal string Name { get;}
+    delegate void MoveHandler();
+    protected internal event MoveHandler MoveEvent;
+}
+class Person : IMovable
+{
+    string name;
+    IMovable.MoveHandler moveEvent;
+    event IMovable.MoveHandler IMovable.MoveEvent
+    {
+        add => moveEvent += value;
+        remove => moveEvent -= value;
+    }
+    string IMovable.Name { get => name; }
+    public Person(string name) => this.name = name;
+    void IMovable.Move()
+    {
+        Console.WriteLine($"{name} is walking");
+        moveEvent?.Invoke();
+    }
+}
