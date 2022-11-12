@@ -1,0 +1,117 @@
+using System;
+IAction action = new HeroAction();
+action.Move();  
+ 
+interface IAction
+{
+    void Move();
+}
+class BaseAction
+{
+    public void Move() => Console.WriteLine("Move in BaseAction");
+}
+class HeroAction : BaseAction, IAction{ }
+
+interface IMovable
+{
+    void Move();
+}
+abstract class Person : IMovable
+{
+    public abstract void Move();
+}
+class Driver : Person
+{
+    public override void Move() => Console.WriteLine("Шофер ведет машину");
+}
+________________________________________________________________________________________
+using System;
+BaseAction action1 = new HeroAction();
+action1.Move();            
+ 
+IAction action2 = new HeroAction();
+action2.Move();  
+interface IAction
+{
+    void Move();
+}
+class BaseAction : IAction
+{
+    public virtual void Move() => Console.WriteLine("Move in BaseAction");
+}
+class HeroAction : BaseAction
+{
+    public override void Move() => Console.WriteLine("Move in HeroAction");
+}
+_____________________________________________________________________________________________
+using System;
+
+BaseAction action1 = new HeroAction();
+action1.Move();            
+ 
+IAction action2 = new HeroAction();
+action2.Move(); 
+
+interface IAction
+{
+    void Move();
+}
+class BaseAction : IAction
+{
+    public void Move() => Console.WriteLine("Move in BaseAction");
+ 
+}
+class HeroAction : BaseAction
+{
+    public new void Move() => Console.WriteLine("Move in HeroAction");
+}
+___________________________________________________________________________________________________
+using System;
+
+BaseAction action1 = new HeroAction();
+action1.Move();            
+ 
+IAction action2 = new HeroAction();
+action2.Move();            
+ 
+HeroAction action3 = new HeroAction();
+action3.Move(); 
+
+interface IAction
+{
+    void Move();
+}
+class BaseAction : IAction
+{
+    public void Move() => Console.WriteLine("Move in BaseAction");
+}
+class HeroAction : BaseAction, IAction
+{
+    public new void Move() =>  Console.WriteLine("Move in HeroAction");
+}
+_____________________________________________________________________________________________________
+using System;
+
+BaseAction action1 = new HeroAction();
+action1.Move();           
+ 
+IAction action2 = new HeroAction();
+action2.Move();             
+ 
+HeroAction action3 = new HeroAction();
+action3.Move();
+
+interface IAction
+{
+    void Move();
+}
+class BaseAction : IAction
+{
+    public void Move() => Console.WriteLine("Move in BaseAction");
+}
+class HeroAction : BaseAction, IAction
+{
+    public new void Move() => Console.WriteLine("Move in HeroAction");
+  
+    void IAction.Move() => Console.WriteLine("Move in IAction");
+}
