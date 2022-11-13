@@ -1,0 +1,35 @@
+using System;
+
+IAction action1 = new RunAction();
+action1.Move(); 
+IRunAction action2 = new RunAction();
+action2.Move();
+ 
+interface IAction
+{
+    void Move() => Console.WriteLine("I am moving");
+}
+interface IRunAction : IAction
+{
+    new void Move() => Console.WriteLine("I am running");
+}
+class RunAction : IRunAction { }
+_______________________________________________________________
+using System;
+
+IAction action1 = new RunAction();
+action1.Move(); 
+IRunAction action2 = new RunAction();
+action2.Move();
+interface IAction
+{
+    void Move() => Console.WriteLine("I am moving");
+}
+interface IRunAction : IAction
+{
+    new void Move() => Console.WriteLine("I am running");
+}
+class RunAction : IRunAction
+{
+    public void Move() => Console.WriteLine("I am tired");
+}
