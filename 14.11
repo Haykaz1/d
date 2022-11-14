@@ -1,0 +1,92 @@
+using System;
+
+var tom = new Person("Tom", 23);
+var bob = tom;
+bob.Name = "Bob";
+Console.WriteLine(tom.Name);
+
+class Person
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public Person(string name, int age)
+    {
+        Name = name;
+        Age = age;
+    }
+}
+
+public interface ICloneable
+{
+    object Clone();
+}
+______________________________________________
+using System;
+
+var tom = new Person("Tom", 23);
+var bob = (Person)tom.Clone();
+bob.Name = "Bob";
+Console.WriteLine(tom.Name);
+
+class Person : ICloneable
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public Person(string name, int age)
+    {
+        Name = name;
+        Age = age;
+    }
+    public object Clone()
+    {
+        return new Person(Name, Age);
+    }
+}
+______________________________________________________
+using System;
+
+var tom = new Person("Tom", 23);
+var bob = (Person)tom.Clone();
+bob.Name = "Bob";
+Console.WriteLine(tom.Name);
+
+class Person : ICloneable
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public Person(string name, int age)
+    {
+        Name = name;
+        Age = age;
+    }
+    public object Clone()
+    {
+        return MemberwiseClone();
+    }
+}
+___________________________________________________
+using System;
+
+var tom = new Person("Tom", 23, new Company("Microsoft"));
+var bob = (Person)tom.Clone();
+bob.Work.Name = "Google";
+Console.WriteLine(tom.Work.Name);
+
+class Person : ICloneable
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public Company Work { get; set; }
+    public Person(string name, int age, Company company)
+    {
+        Name = name;
+        Age = age;
+        Work = company;
+    }
+    public object Clone() => new Person(Name, Age, new Company(Work.Name));
+}
+class Company
+{
+    public string Name { get; set; }
+    public Company(string name) => Name = name;
+}
