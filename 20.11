@@ -1,0 +1,130 @@
+using System;
+
+var microsoft = new Company(new[]
+{
+    new Person("Tom"), new Person("Bob"), new Person("Sam"), new Person("Alice")
+});
+Person firstPerson = microsoft[0];
+Console.WriteLine(firstPerson.Name); 
+microsoft[0] = new Person("Mike");
+Console.WriteLine(microsoft[0].Name); 
+
+class Person
+{
+    public string Name { get;}
+    public Person(string name) => Name=name;
+}
+class Company
+{
+    Person[] personal;
+    public Company(Person[] people) => personal = people;
+    public Person this[int index]
+    {
+        get
+        {
+            if (index >= 0 && index < personal.Length)
+                return personal[index];
+            else
+                throw new ArgumentOutOfRangeException();
+        }
+        set
+        {
+            if (index >= 0 && index < personal.Length)
+                personal[index] = value;   
+        }
+    }
+}
+________________________________________________________________________
+using System;
+
+User tom = new User();
+tom["name"] = "Tom";
+tom["email"] = "tom@gmail.ru";
+tom["phone"] = "+1234556767";
+Console.WriteLine(tom["name"]);
+ 
+class User
+{
+    string name = "";
+    string email = "";
+    string phone = "";
+    public string this[string propname]
+    {
+        get
+        {
+            switch (propname)
+            {
+                case "name": return name;
+                case "email": return email;
+                case "phone": return phone;
+                default: throw new Exception("Unknown Property Name");
+            }
+        }
+        set
+        {
+            switch (propname)
+            {
+                case "name":
+                    name = value;
+                    break;
+                case "email":
+                    email = value;
+                    break;
+                case "phone":
+                    phone = value;
+                    break;
+            }
+        }
+    }
+}
+_______________________________________________________________________________________
+using System;
+
+Matrix matrix = new Matrix();
+Console.WriteLine(matrix[0, 0]);
+matrix[0, 0] = 111;
+Console.WriteLine(matrix[0, 0]);
+
+class Matrix
+{
+    int[,] numbers = new int[,] { { 1, 2, 4 }, { 2, 3, 6 }, { 3, 4, 8 } };
+    public int this[int i, int j]
+    {
+        get => numbers[i, j];
+        set => numbers[i, j] = value;
+    }
+}
+__________________________________________________________________________________________
+using System;
+
+var microsoft = new Company(new Person[] { new("Tom"), new("Bob"), new("Sam") });
+ 
+Console.WriteLine(microsoft[0].Name);      
+Console.WriteLine(microsoft["Bob"].Name);  
+class Person
+{
+    public string Name { get;}
+    public Person(string name) => Name=name;
+}
+class Company
+{
+    Person[] personal;
+    public Company(Person[] people) => personal = people;
+    public Person this[int index]
+    {
+        get => personal[index];
+        set => personal[index] = value;
+    }
+ 
+    public Person this[string name]
+    {
+        get
+        {
+            foreach (var person in personal)
+            {
+                if (person.Name == name) return person;
+            }
+            throw new Exception("Unknown name");
+        }
+    }
+}
