@@ -1,0 +1,35 @@
+using System;
+
+var user = new { Name = "Tom", Age = 34 };
+var student = new { Name = "Alice", Age = 21 };
+var manager = new { Name = "Bob", Age = 26, Company = "Microsoft" };
+ 
+Console.WriteLine(user.GetType().Name);
+Console.WriteLine(student.GetType().Name);
+Console.WriteLine(manager.GetType().Name);
+_______________________________________________________________________
+using System;
+
+Person tom = new Person("Tom"); 
+int age = 34;
+var student = new { tom.Name, age }; 
+Console.WriteLine(student.Name);
+Console.WriteLine(student.age);
+ 
+class Person
+{
+    public string Name { get; set; }
+    public Person(string name) => Name = name;
+}
+___________________________________________________________________________
+using System;
+
+var people = new[]
+{
+    new {Name="Tom"},
+    new {Name="Bob"}
+};
+foreach(var p in people)
+{
+    Console.WriteLine(p.Name);
+}
