@@ -1,0 +1,90 @@
+using System;
+
+var person1 = new Person("Tom");
+var person2 = new Person("Tom");
+Console.WriteLine(person1.Equals(person2)); 
+ 
+var user1 = new User("Tom");
+var user2 = new User("Tom");
+Console.WriteLine(user1.Equals(user2));    
+ 
+public record Person
+{
+    public string Name { get; init; }
+ 
+    public Person(string name) => Name = name;
+}
+public class User
+{
+    public string Name { get; init; }
+    public User(string name) => Name = name;
+}
+__________________________________________________________________
+var tom = new Person("Tom", 37);
+var sam = tom with { Name = "Sam" };
+Console.WriteLine($"{sam.Name} - {sam.Age}"); // Sam - 37
+ 
+public record Person
+{
+    public string Name { get; init; }
+    public int Age { get; init; }
+    public Person(string name, int age)
+    {
+        Name = name; Age = age;
+    }
+}
+_____________________________________________________________________________________________
+using System;
+
+var person = new Person ("Tom", 37);
+Console.WriteLine(person.Name); 
+ 
+var (personName, personAge) = person;
+ 
+Console.WriteLine(personAge);   
+Console.WriteLine(personName);   
+
+public record struct Person
+{
+    public string Name { get; init; }
+    public int Age { get; init; }
+    public Person(string name, int age)
+    {
+        Name = name; Age = age;
+    }
+    public void Deconstruct(out string name, out int age) => (name, age) = (Name, Age);
+}
+_________________________________________________________________________________________________
+using System;
+
+var person = new Person("Tom", 37) { Company = "Google"};
+Console.WriteLine(person.Company); 
+person.Company = "Microsoft";
+Console.WriteLine(person.Company); 
+ 
+public record Person(string Name, int Age)
+{
+    public string Company { get; set; } = "";
+}
+______________________________________________________________________________________________________
+using System;
+
+var person = new Person("Tom", 37);
+Console.WriteLine(person); 
+ 
+var (personName, personAge) = person;
+ 
+Console.WriteLine(personAge);   
+Console.WriteLine(personName);   
+ 
+public record Person(string Name, int Age);
+______________________________________________________________________________________________________
+using System;
+
+var tom = new Person("Tom", 37);
+var bob = new Employee("Bob", 41, "Microsoft");
+Console.WriteLine(tom); 
+Console.WriteLine(bob); 
+ 
+public record Person(string Name, int Age);
+public record Employee(string Name, int Age, string Company) : Person(Name, Age);
