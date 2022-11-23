@@ -1,0 +1,97 @@
+using System;
+
+Counter counter1 = new Counter { Value = 23 };
+Counter counter2 = new Counter { Value = 45 };
+bool result = counter1 > counter2;
+Console.WriteLine(result); 
+ 
+Counter counter3 = counter1 + counter2;
+Console.WriteLine(counter3.Value);
+
+Counter counter4 = new Counter { Value = 23 };
+int result1 = counter1 + 27; 
+Console.WriteLine(result1);
+
+class Counter
+{
+    public int Value { get; set; }
+    
+	public static int operator +(Counter counter4, int val)
+{
+    return counter4.Value + val;
+}
+	
+    public static Counter operator +(Counter counter1, Counter counter2)
+    {
+        return new Counter { Value = counter1.Value + counter2.Value };
+    }
+    public static bool operator >(Counter counter1, Counter counter2)
+    {
+        return counter1.Value > counter2.Value;
+    }
+    public static bool operator <(Counter counter1, Counter counter2)
+    {
+        return counter1.Value < counter2.Value;
+    }
+}
+________________________________________________________________________________
+using System;
+
+Counter counter1 = new Counter() { Value = 10 };
+Counter counter2 = counter1++;
+Console.WriteLine(counter1.Value);      
+Console.WriteLine(counter2.Value);      
+ 
+Counter counter3 = ++counter1;
+Console.WriteLine(counter1.Value);      
+Console.WriteLine(counter3.Value);
+
+class Counter
+{
+    public int Value { get; set; }
+	
+	public static Counter operator ++(Counter counter1)
+{
+    return new Counter { Value = counter1.Value + 10 };
+}
+	
+    public static Counter operator +(Counter counter1, Counter counter2)
+    {
+        return new Counter { Value = counter1.Value + counter2.Value };
+    }
+    public static bool operator >(Counter counter1, Counter counter2)
+    {
+        return counter1.Value > counter2.Value;
+    }
+    public static bool operator <(Counter counter1, Counter counter2)
+    {
+        return counter1.Value < counter2.Value;
+    }
+}
+________________________________________________________________________________
+using System;
+
+Counter counter = new Counter() { Value = 2 };
+if (!counter)
+    Console.WriteLine(true);
+else
+    Console.WriteLine(false);
+ 
+class Counter
+{
+    public int Value { get; set; }
+ 
+    public static bool operator !(Counter counter1)
+    {
+        return counter1.Value == 0;
+    }
+ 
+    public static bool operator true(Counter counter1)
+    {
+        return counter1.Value != 0;
+    }
+    public static bool operator false(Counter counter1)
+    {
+        return counter1.Value == 0;
+    }
+}
