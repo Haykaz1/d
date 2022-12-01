@@ -1,0 +1,76 @@
+using System;
+					
+string name = "Tom";
+int age = 23;
+ 
+Console.WriteLine("Имя: {0}  Возраст: {1}", name, age);
+
+string name1 = "Tom";
+int age1 = 23;
+string output = string.Format("Имя: {0}  Возраст: {1}", name1, age1);
+Console.WriteLine(output);
+
+double number = 23.7;
+string result = string.Format("{0:C0}", number);
+Console.WriteLine(result);
+string result2 = string.Format("{0:C2}", number);
+Console.WriteLine(result2);
+
+int number1 = 23;
+string result1 = string.Format("{0:d}", number1);
+Console.WriteLine(result1); 
+string result3 = string.Format("{0:d4}", number1);
+Console.WriteLine(result3);
+___________________________________________________________________________
+using System;
+					
+int number = 23;
+string result = string.Format("{0:f}", number);
+Console.WriteLine(result); 
+ 
+double number2 = 45.08;
+string result2 = string.Format("{0:f4}", number2);
+Console.WriteLine(result2); 
+ 
+double number3 = 25.07;
+string result3 = string.Format("{0:f1}", number3);
+Console.WriteLine(result3);
+
+decimal number4 = 0.15345m;
+Console.WriteLine("{0:P1}", number4);
+
+long number5 = 19876543210;
+string result4 = string.Format("{0:+# (###) ###-##-##}", number5);
+Console.WriteLine(result4);
+
+long number6 = 19876543210;
+Console.WriteLine(number6.ToString("+# (###) ###-##-##"));
+ 
+double money = 24.8;
+Console.WriteLine(money.ToString("C2"));
+
+string name = "Tom";
+int age = 23;
+ 
+Console.WriteLine($"Имя: {name}  Возраст: {age}");
+
+int x = 8;
+int y = 7;
+string result5 = $"{x} + {y} = {x + y}";
+Console.WriteLine(result5);
+
+int x1 = 8;
+int y1 = 7;
+string result6 = $"{x1} * {y1} = {Multiply(x1, y1)}";
+Console.WriteLine(result6);
+ 
+int Multiply(int a, int b) => a * b;
+
+long number7 = 19876543210;
+Console.WriteLine($"{number7:+# ### ### ## ##}");
+
+string name1 = "Tom";
+int age1 = 23;
+ 
+Console.WriteLine($"Имя: {name1, -5} Возраст: {age1}"); 
+Console.WriteLine($"Имя: {name1, 5} Возраст: {age1}");
