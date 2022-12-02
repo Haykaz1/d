@@ -1,0 +1,38 @@
+using System;
+using System.Text;
+
+StringBuilder sb1 = new StringBuilder("Привет мир");
+Console.WriteLine($"Длина: {sb1.Length}");       
+Console.WriteLine($"Емкость: {sb1.Capacity}");
+ 
+var sb = new StringBuilder("Название: ");
+Console.WriteLine(sb);   
+Console.WriteLine($"Длина: {sb.Length}"); 
+Console.WriteLine($"Емкость: {sb.Capacity}"); 
+ 
+sb.Append(" Руководство");
+Console.WriteLine(sb);   
+Console.WriteLine($"Длина: {sb.Length}"); 
+Console.WriteLine($"Емкость: {sb.Capacity}"); 
+ 
+sb.Append(" по C#");
+Console.WriteLine(sb);   
+Console.WriteLine($"Длина: {sb.Length}");
+Console.WriteLine($"Емкость: {sb.Capacity}");
+_________________________________________________________
+using System;
+using System.Text;
+
+var sb = new StringBuilder("Привет мир");
+sb.Append("!");
+sb.Insert(7, "компьютерный ");
+Console.WriteLine(sb);  
+
+sb.Replace("мир", "world");
+Console.WriteLine(sb);  
+
+sb.Remove(7, 13);
+Console.WriteLine(sb);  
+
+string text = sb.ToString();
+Console.WriteLine(text);
