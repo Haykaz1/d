@@ -1,0 +1,29 @@
+using System;
+
+Reader reader = new Reader();
+reader.ReadEbook();
+
+class Reader
+{
+    Library library = new Library();
+    public void ReadBook()
+    {
+        library.GetBook();
+        Console.WriteLine("Читаем бумажную книгу");
+    }
+ 
+    public void ReadEbook()
+    {
+        Console.WriteLine("Читаем книгу на компьютере");
+    }
+}
+ 
+class Library
+{
+    private string[] books = new string[99];
+ 
+    public void GetBook()
+    {
+        Console.WriteLine("Выдаем книгу читателю");
+    }
+}
