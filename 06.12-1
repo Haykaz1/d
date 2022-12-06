@@ -1,0 +1,49 @@
+using System;
+
+Index myIndex1 = 2;    
+Index myIndex2 = ^2;    
+ 
+string[] people = { "Tom", "Bob", "Sam", "Kate", "Alice" };
+string selected1 = people[myIndex1]; 
+string selected2 = people[myIndex2];   
+Console.WriteLine(selected1);   
+Console.WriteLine(selected2);
+
+string[] people1= { "Tom", "Bob", "Sam", "Kate", "Alice" };
+string selected3= people1[2];    
+string selected4= people1[people1.Length - 2];   
+Console.WriteLine(selected3);   
+Console.WriteLine(selected4);
+__________________________________________________________________
+using System;
+
+string[] people = { "Tom", "Bob", "Sam", "Kate", "Alice" };
+string[] peopleRange = people[1..4]; 
+foreach(var person in peopleRange)
+{
+    Console.WriteLine(person);
+}
+
+string[] people1= { "Tom", "Bob", "Sam", "Kate", "Alice" };
+string[] peopleRange1= people1[..4];
+foreach(var person in peopleRange1)
+{
+    Console.WriteLine(person);
+}
+
+string[] people2= { "Tom", "Bob", "Sam", "Kate", "Alice" };
+string[] peopleRange2= people2[1..];
+foreach(var person in peopleRange2)
+{
+    Console.WriteLine(person);
+}
+
+string[] people3= { "Tom", "Bob", "Sam", "Kate", "Alice" };
+string[] peopleRange3= people3[2..];       
+string[] peopleRange4= people3[..^1];       
+string[] peopleRange5= people3[^3..^1]; 
+
+foreach(var person in peopleRange5)
+{
+    Console.WriteLine(person);
+}
