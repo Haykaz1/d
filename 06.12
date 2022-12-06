@@ -1,0 +1,24 @@
+using System;
+
+string[] people = new string[] { "Tom", "Alice", "Bob" };
+Span<string> peopleSpan = people;
+peopleSpan[1] = "Ann";              
+Console.WriteLine(peopleSpan[2]);   
+Console.WriteLine(peopleSpan.Length);   
+
+foreach (var s in peopleSpan)
+{
+    Console.WriteLine(s);
+}
+_________________________________________________________________________________
+using System;
+
+string text = "hello, world";
+string worldString = text.Substring(startIndex: 7, length: 5);         
+ReadOnlySpan<char> worldSpan = text.AsSpan().Slice(start: 7, length: 5); 
+Console.WriteLine(worldSpan[0]);
+
+foreach(var c in worldSpan)
+{
+    Console.Write(c);
+}
