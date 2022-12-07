@@ -1,0 +1,32 @@
+using System;
+using System.Threading;
+
+Thread myThread1 = new Thread(Print); 
+Thread myThread2 = new Thread(new ThreadStart(Print));
+Thread myThread3 = new Thread(()=>Console.WriteLine("Hello Threads"));
+ 
+myThread1.Start();  
+myThread2.Start();  
+myThread3.Start();
+ 
+void Print() => Console.WriteLine("Hello Threads");
+__________________________________________________________________________________
+using System;
+using System.Threading;
+
+Thread myThread = new Thread(Print);
+myThread.Start();
+
+for (int i = 0; i < 5; i++)
+{
+    Console.WriteLine($"Главный поток: {i}");
+    Thread.Sleep(300);
+}
+void Print()
+{
+    for (int i = 0; i < 5; i++)
+    {
+        Console.WriteLine($"Второй поток: {i}");
+        Thread.Sleep(400);
+    }
+}
