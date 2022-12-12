@@ -1,0 +1,87 @@
+using System;
+using System.Threading.Tasks;
+using System.Threading;
+
+var outer = Task.Factory.StartNew(() =>     
+{
+    Console.WriteLine("Outer task starting...");
+    var inner = Task.Factory.StartNew(() =>  
+    {
+        Console.WriteLine("Inner task starting...");
+        Thread.Sleep(2000);
+        Console.WriteLine("Inner task finished.");
+    });
+});
+outer.Wait(); 
+Console.WriteLine("End of Main");
+__________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+using System.Threading;
+
+var outer = Task.Factory.StartNew(() =>     
+{
+    Console.WriteLine("Outer task starting...");
+    var inner = Task.Factory.StartNew(() => 
+    {
+        Console.WriteLine("Inner task starting...");
+        Thread.Sleep(2000);
+        Console.WriteLine("Inner task finished.");
+    }, TaskCreationOptions.AttachedToParent);
+});
+outer.Wait(); 
+Console.WriteLine("End of Main");
+________________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+using System.Threading;
+
+Task[] tasks = new Task[3];
+for(var i = 0; i < tasks.Length; i++)
+{
+    tasks[i] = new Task(() =>
+    {
+        Thread.Sleep(1000); 
+        Console.WriteLine($"Task{i} finished");
+    });
+    tasks[i].Start();   
+}
+Console.WriteLine("Завершение метода Main");
+_____________________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+using System.Threading;
+
+Task[] tasks = new Task[3];
+for(var i = 0; i < tasks.Length; i++)
+{
+    tasks[i] = new Task(() =>
+    {
+        Thread.Sleep(1000); 
+        Console.WriteLine($"Task{i} finished");
+    });
+    tasks[i].Start();   
+}
+Console.WriteLine("Завершение метода Main");
+ 
+Task.WaitAll(tasks);
+_____________________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+
+int n1 =4, n2 = 5;
+Task<int> sumTask = new Task<int>(() => Sum(n1, n2));
+sumTask.Start();
+ 
+int result = sumTask.Result;
+Console.WriteLine($"{n1} + {n2} = {result}"); 
+ 
+int Sum(int a, int b) => a + b;
+
+Task<Person> defaultPersonTask = new Task<Person>(() => new Person("Tom", 37));
+defaultPersonTask.Start();
+ 
+Person defaultPerson = defaultPersonTask.Result;
+Console.WriteLine($"{defaultPerson.Name} - {defaultPerson.Age}"); 
+ 
+record class Person(string Name, int Age); 
