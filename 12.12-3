@@ -1,0 +1,222 @@
+using System;
+using System.Threading.Tasks;
+using System.Threading;
+
+CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+CancellationToken token = cancelTokenSource.Token;
+
+Task task = new Task(() =>
+{
+    for (int i = 1; i < 10; i++)
+    {
+        if (token.IsCancellationRequested)  
+        {
+            Console.WriteLine("Операция прервана");
+            return;     
+        }
+        Console.WriteLine($"Квадрат числа {i} равен {i * i}");
+        Thread.Sleep(200);
+    }
+}, token);
+task.Start();
+ 
+Thread.Sleep(1000);
+cancelTokenSource.Cancel();
+Thread.Sleep(1000);
+Console.WriteLine($"Task Status: {task.Status}");
+cancelTokenSource.Dispose();
+_______________________________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+using System.Threading;
+
+CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+CancellationToken token = cancelTokenSource.Token;
+ 
+Task task = new Task(() =>
+{
+    for (int i = 1; i < 10; i++)
+    {
+        if (token.IsCancellationRequested)
+            token.ThrowIfCancellationRequested(); 
+ 
+        Console.WriteLine($"Квадрат числа {i} равен {i * i}");
+        Thread.Sleep(200);
+    }
+}, token);
+try
+{
+    task.Start();
+    Thread.Sleep(1000);
+    cancelTokenSource.Cancel();
+ 
+    task.Wait();
+}
+catch (AggregateException ae)
+{
+    foreach (Exception e in ae.InnerExceptions)
+    {
+        if (e is TaskCanceledException)
+            Console.WriteLine("Операция прервана");
+        else
+            Console.WriteLine(e.Message);
+    }
+}
+finally
+{
+    cancelTokenSource.Dispose();
+}
+
+Console.WriteLine($"Task Status: {task.Status}");
+__________________________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+using System.Threading;
+
+CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+CancellationToken token = cancelTokenSource.Token;
+ 
+Task task = new Task(() =>
+{
+    for (int i = 1; i < 10; i++)
+    {
+        if (token.IsCancellationRequested)
+            token.ThrowIfCancellationRequested(); 
+ 
+        Console.WriteLine($"Квадрат числа {i} равен {i * i}");
+        Thread.Sleep(200);
+    }
+}, token);
+try
+{
+    task.Start();
+    Thread.Sleep(1000);
+    cancelTokenSource.Cancel();
+
+    Thread.Sleep(1000);
+}
+catch (AggregateException ae)
+{
+    foreach (Exception e in ae.InnerExceptions)
+    {
+        if (e is TaskCanceledException)
+            Console.WriteLine("Операция прервана");
+        else
+            Console.WriteLine(e.Message);
+    }
+}
+finally
+{
+    cancelTokenSource.Dispose();
+}
+
+Console.WriteLine($"Task Status: {task.Status}");
+_________________________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+using System.Threading;
+
+CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+CancellationToken token = cancelTokenSource.Token;
+
+Task task = new Task(() =>
+{
+    int i = 1;
+    token.Register(() => 
+    { 
+        Console.WriteLine("Операция прервана"); 
+        i = 10; 
+    });
+    for (; i < 10; i++)
+    {
+        Console.WriteLine($"Квадрат числа {i} равен {i * i}");
+        Thread.Sleep(400);
+    }
+}, token);
+task.Start();
+ 
+Thread.Sleep(1000);
+cancelTokenSource.Cancel();
+Thread.Sleep(1000);
+Console.WriteLine($"Task Status: {task.Status}");
+cancelTokenSource.Dispose();
+_________________________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+using System.Threading;
+
+CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+CancellationToken token = cancelTokenSource.Token;
+ 
+Task task = new Task(() =>PrintSquares(token), token);
+try
+{
+    task.Start();
+    Thread.Sleep(1000);
+    cancelTokenSource.Cancel();
+
+    task.Wait();
+}
+catch (AggregateException ae)
+{
+    foreach (Exception e in ae.InnerExceptions)
+    {
+        if (e is TaskCanceledException)
+            Console.WriteLine("Операция прервана");
+        else
+            Console.WriteLine(e.Message);
+    }
+}
+finally
+{
+    cancelTokenSource.Dispose();
+}
+
+Console.WriteLine($"Task Status: {task.Status}");
+ 
+ 
+void PrintSquares(CancellationToken token)
+{
+    for (int i = 1; i < 10; i++)
+    {
+        if (token.IsCancellationRequested)
+            token.ThrowIfCancellationRequested(); 
+ 
+        Console.WriteLine($"Квадрат числа {i} равен {i * i}");
+        Thread.Sleep(200);
+    }
+}
+__________________________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Collections.Generic;
+
+CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
+CancellationToken token = cancelTokenSource.Token;
+
+new Task(() =>
+{
+    Thread.Sleep(400);
+    cancelTokenSource.Cancel();
+}).Start();
+ 
+try
+{
+    Parallel.ForEach<int>(new List<int>() { 1, 2, 3, 4, 5},
+                                new ParallelOptions { CancellationToken = token }, Square);
+}
+catch (OperationCanceledException)
+{
+    Console.WriteLine("Операция прервана");
+}
+finally
+{
+    cancelTokenSource.Dispose();
+}
+ 
+void Square(int n)
+{
+    Thread.Sleep(3000);
+    Console.WriteLine($"Квадрат числа {n} равен {n * n}");
+}
