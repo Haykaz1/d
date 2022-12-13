@@ -1,0 +1,111 @@
+using System;
+using System.Threading.Tasks;
+
+PrintAsync("Hello World");
+PrintAsync("Hello METANIT.COM");
+ 
+Console.WriteLine("Main End");
+await Task.Delay(3000);
+
+async void PrintAsync(string message)
+{
+    await Task.Delay(1000);     
+    Console.WriteLine(message);
+}
+_____________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+
+Account account = new Account();
+account.Added += PrintAsync;
+ 
+account.Put(500);
+ 
+await Task.Delay(2000);
+
+async void PrintAsync(object obj, string message)
+{
+    await Task.Delay(1000);     
+    Console.WriteLine(message);
+}
+ 
+class Account
+{
+    int sum = 0;
+    public event EventHandler<string> Added;
+    public void Put(int sum)
+    {
+        this.sum += sum;
+        Added?.Invoke(this, $"На счет поступило {sum} $");
+    }
+}
+____________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+
+await PrintAsync("Hello Metanit.com");
+
+async Task PrintAsync(string message)
+{
+    await Task.Delay(1000);     
+    Console.WriteLine(message);
+}
+___________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+
+var task = PrintAsync("Hello Metanit.com"); 
+Console.WriteLine("Main Works");
+ 
+await task; 
+
+async Task PrintAsync(string message)
+{
+    await Task.Delay(0);
+    Console.WriteLine(message);
+}
+___________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+
+int n1 = await SquareAsync(5);
+int n2 = await SquareAsync(6);
+Console.WriteLine($"n1={n1}  n2={n2}"); 
+ 
+async Task<int> SquareAsync(int n)
+{
+    await Task.Delay(0);
+    return n * n;
+}
+___________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+
+Person person = await GetPersonAsync("Tom");
+Console.WriteLine(person.Name); 
+async Task<Person> GetPersonAsync(string name)
+{
+    await Task.Delay(0);
+    return new Person(name);
+}
+record class Person(string Name);
+__________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+
+var square5 = SquareAsync(5);
+var square6 = SquareAsync(6);
+ 
+Console.WriteLine("Остальные действия в методе Main");
+ 
+int n1 = await square5;
+int n2 = await square6;
+Console.WriteLine($"n1={n1}  n2={n2}"); 
+ 
+async Task<int> SquareAsync(int n)
+{
+    await Task.Delay(0);
+    var result = n * n;
+    Console.WriteLine($"Квадрат числа {n} равен {result}");
+    return result;
+}
