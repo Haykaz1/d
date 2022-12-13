@@ -1,0 +1,112 @@
+using System;
+using System.Threading.Tasks;
+using System.Threading;
+
+await PrintAsync(); 
+Console.WriteLine("Некоторые действия в методе Main");
+ 
+void Print()
+{
+    Thread.Sleep(3000);    
+    Console.WriteLine("Hello METANIT.COM");
+}
+
+async Task PrintAsync()
+{
+    Console.WriteLine("Начало метода PrintAsync"); 
+    await Task.Run(() => Print());                
+    Console.WriteLine("Конец метода PrintAsync");
+} 
+________________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+using System.Threading;
+
+class Program
+{
+    async static Task Main(string[] args)
+    {
+        await PrintAsync();  
+        Console.WriteLine("Некоторые действия в методе Main");
+ 
+ 
+        void Print()
+        {
+            Thread.Sleep(3000);  
+            Console.WriteLine("Hello METANIT.COM");
+        }
+ 
+        async Task PrintAsync()
+        {
+            Console.WriteLine("Начало метода PrintAsync"); 
+            await Task.Run(() => Print());                
+            Console.WriteLine("Конец метода PrintAsync");
+        }
+    }
+}
+________________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+
+await PrintAsync();  
+Console.WriteLine("Некоторые действия в методе Main");
+
+async Task PrintAsync()
+{
+    await Task.Delay(3000);  
+    Console.WriteLine("Hello METANIT.COM");
+}   
+________________________________________________________________________________
+using System;
+using System.Threading;
+
+PrintName("Tom");
+PrintName("Bob");
+PrintName("Sam");
+ 
+void PrintName(string name)
+{
+    Thread.Sleep(3000);  
+    Console.WriteLine(name);
+}
+__________________________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+
+await PrintNameAsync("Tom");
+await PrintNameAsync("Bob");
+await PrintNameAsync("Sam");
+ 
+async Task PrintNameAsync(string name)
+{
+    await Task.Delay(3000);    
+    Console.WriteLine(name);
+}
+_____________________________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+
+var tomTask = PrintNameAsync("Tom");
+var bobTask = PrintNameAsync("Bob");
+var samTask = PrintNameAsync("Sam");
+ 
+await tomTask;
+await bobTask;
+await samTask;
+async Task PrintNameAsync(string name)
+{
+    await Task.Delay(3000);    
+    Console.WriteLine(name);
+}
+____________________________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+
+Func<string, Task> printer = async (message) =>
+{
+    await Task.Delay(1000);
+    Console.WriteLine(message);
+};
+ 
+await printer("Hello World");
+await printer("Hello METANIT.COM");
