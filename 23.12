@@ -1,0 +1,119 @@
+using System;
+using System.Threading.Tasks;
+
+try
+{
+    await PrintAsync("Hello METANIT.COM");
+    await PrintAsync("Hi");
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message);
+}
+ 
+async Task PrintAsync(string message)
+{
+    if (message.Length < 3)
+        throw new ArgumentException($"Invalid string length: {message.Length}");
+    await Task.Delay(100);    
+    Console.WriteLine(message);
+}
+_____________________________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+
+try
+{
+    PrintAsync("Hello METANIT.COM");
+    PrintAsync("Hi");       
+    await Task.Delay(1000); 
+}
+catch (Exception ex)    
+{
+    Console.WriteLine(ex.Message);
+}
+ 
+async void PrintAsync(string message)
+{
+    if (message.Length < 3)
+        throw new ArgumentException($"Invalid string length: {message.Length}");
+    await Task.Delay(100);    
+    Console.WriteLine(message);
+}
+_____________________________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+
+PrintAsync("Hello METANIT.COM");
+PrintAsync("Hi");
+await Task.Delay(1000); 
+ 
+async void PrintAsync(string message)
+{
+    try
+    {
+        if (message.Length < 3)
+            throw new ArgumentException($"Invalid string length: {message.Length}");
+        await Task.Delay(100);    
+        Console.WriteLine(message);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex.Message);
+    }
+ 
+}
+_______________________________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+
+var task = PrintAsync("Hi");
+try
+{
+    await task;
+}
+catch
+{
+    Console.WriteLine(task.Exception?.InnerException?.Message); 
+    Console.WriteLine($"IsFaulted: {task.IsFaulted}"); 
+    Console.WriteLine($"Status: {task.Status}");        
+}
+ 
+async Task PrintAsync(string message)
+{
+    if (message.Length < 3)
+        throw new ArgumentException($"Invalid string length: {message.Length}");
+    await Task.Delay(1000);     
+    Console.WriteLine(message);
+}
+_________________________________________________________________________________________________________
+using System;
+using System.Threading.Tasks;
+
+var task1 = PrintAsync("H");
+var task2 = PrintAsync("Hi");
+var allTasks = Task.WhenAll(task1, task2);
+try
+{
+    await allTasks;
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Exception: {ex.Message}");
+    Console.WriteLine($"IsFaulted: {allTasks.IsFaulted}");
+    if(allTasks.Exception is not null)
+    {
+        foreach (var exception in allTasks.Exception.InnerExceptions)
+        {
+            Console.WriteLine($"InnerException: {exception.Message}");
+        }
+    }
+}
+ 
+async Task PrintAsync(string message)
+{
+    if (message.Length < 3)
+        throw new ArgumentException($"Invalid string: {message}");
+    await Task.Delay(1000);     
+    Console.WriteLine(message);
+}
