@@ -1,0 +1,116 @@
+using System;
+using System.Reflection;
+ 
+Type myType = typeof(Person);
+ 
+Console.WriteLine("Поля:");
+foreach (FieldInfo field in myType.GetFields(
+    BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static))
+{
+    string modificator = "";
+ 
+    if (field.IsPublic)
+        modificator += "public ";
+    else if (field.IsPrivate)
+        modificator += "private ";
+    else if (field.IsAssembly)
+        modificator += "internal ";
+    else if (field.IsFamily)
+        modificator += "protected ";
+    else if (field.IsFamilyAndAssembly)
+        modificator += "private protected ";
+    else if (field.IsFamilyOrAssembly)
+        modificator += "protected internal ";
+ 
+    if (field.IsStatic) modificator += "static ";
+ 
+    Console.WriteLine($"{modificator}{field.FieldType.Name} {field.Name}");
+}
+ 
+class Person
+{
+    static int minAge = 0;
+    string name;
+    int age;
+    public Person(string name, int age)
+    {
+        this.name = name;
+        this.age = age;
+    }
+    public void Print() => Console.WriteLine($"{name} - {age}");
+} 
+____________________________________________________________________________________________________________
+using System;
+using System.Reflection;
+ 
+Type myType = typeof(Person);
+Person tom = new Person("Tom", 37);
+ 
+var name = myType.GetField("name", BindingFlags.Instance | BindingFlags.NonPublic);
+ 
+var value =name?.GetValue(tom);
+Console.WriteLine(value);   
+
+name?.SetValue(tom, "Bob");
+tom.Print();   
+ 
+class Person
+{
+    static int minAge = 1;
+    string name;
+    int age;
+    public Person(string name, int age)
+    {
+        this.name = name;
+        this.age = age;
+    }
+    public void Print() => Console.WriteLine($"{name} - {age}");
+}
+_______________________________________________________________________________________________________________
+using System;
+using System.Reflection;
+ 
+Type myType = typeof(Person);
+foreach (PropertyInfo prop in myType.GetProperties(
+    BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static))
+{
+    Console.Write($"{prop.PropertyType} {prop.Name} {{");
+ 
+    if (prop.CanRead) Console.Write("get;");
+    if (prop.CanWrite) Console.Write("set;");
+    Console.WriteLine("}");
+}
+ 
+class Person
+{
+    public string Name { get; }
+    public int Age { get; set; }
+    public Person(string name, int age)
+    {
+        Name = name;
+        Age = age;
+    }
+    public void Print() => Console.WriteLine($"{Name} - {Age}");
+}
+____________________________________________________________________________________________________________________
+using System;
+ 
+Type myType = typeof(Person);
+Person tom = new Person("Tom", 37);
+var ageProp = myType.GetProperty("Age");
+var age = ageProp?.GetValue(tom);
+Console.WriteLine(age); 
+ageProp?.SetValue(tom, 22);
+tom.Print();   
+ 
+class Person
+{
+    public string Name { get; }
+    public int Age { get; set; }
+    public Person(string name, int age)
+    {
+        Name = name;
+        Age = age;
+    }
+    public void Print() => Console.WriteLine($"{Name} - {Age}");
+}
