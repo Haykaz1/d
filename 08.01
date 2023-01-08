@@ -1,0 +1,59 @@
+using System;
+using System.Reflection;
+
+Assembly asm = Assembly.LoadFrom("MyApp.dll");
+ 
+Console.WriteLine(asm.FullName);
+Type[] types = asm.GetTypes();
+foreach (Type t in types)
+{
+    Console.WriteLine(t.Name);
+}
+Person tom = new Person("Tom");
+Console.WriteLine($"Hello, {tom.Name}");
+ 
+class Person
+{
+    public string Name { get; }
+    public Person(string name) => Name = name;
+}
+___________________________________________________________________________________________________
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        var number = 5;
+        var result = Square(number);
+        Console.WriteLine($"Квадрат {number} равен {result}");
+    }
+    static int Square(int n) => n * n;
+}
+______________________________________________________________________________________________________
+using System;
+using System.Reflection;
+ 
+Assembly asm = Assembly.LoadFrom("MyApp.dll");
+ 
+Type? t = asm.GetType("Program");
+if (t is not null)
+{
+    MethodInfo? square = t.GetMethod("Square", BindingFlags.NonPublic | BindingFlags.Static);
+ 
+    object? result = square?.Invoke(null, new object[] { 7 });
+    Console.WriteLine(result);
+}
+______________________________________________________________________________________________________
+using System;
+using System.Reflection;
+ 
+Assembly asm = Assembly.LoadFrom("MyApp.dll");
+ 
+Type? program = asm.GetType("Program");
+if (program is not null)
+{
+    MethodInfo? main = program.GetMethod("Main", BindingFlags.NonPublic | BindingFlags.Static);
+ 
+    main?.Invoke(null, new object[] { new string[] { } });  
+}
