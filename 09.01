@@ -1,0 +1,41 @@
+using System;
+
+dynamic obj = 3;           
+Console.WriteLine(obj);     
+ 
+obj = "Hello world";        
+Console.WriteLine(obj);     
+ 
+obj = new Person("Tom", 37); 
+Console.WriteLine(obj);      
+ 
+record class Person(string Name, int Age);
+___________________________________________________________________________
+using System;
+
+dynamic tom = new Person("Tom", 22);
+Console.WriteLine(tom);
+Console.WriteLine(tom.GetSalary(28, "int"));
+ 
+dynamic bob = new Person("Bob", "twenty-two");
+Console.WriteLine(bob);
+Console.WriteLine(bob.GetSalary("twenty-eight", "string"));
+
+class Person
+{
+    public string Name { get;}
+    public dynamic Age { get; set; }
+    public Person(string name, dynamic age)
+    {
+        Name = name; Age = age;
+    }
+ 
+    public dynamic GetSalary(dynamic value, string format)
+    {
+        if (format == "string") return $"{value} euro";
+        else if (format == "int") return value;
+        else return 0.0;
+    }
+ 
+    public override string ToString() => $"Name: {Name}  Age: {Age}";
+}
