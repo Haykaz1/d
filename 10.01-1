@@ -1,0 +1,75 @@
+using System;
+
+Test();        
+GC.Collect();   
+Console.Read(); 
+ 
+void Test()
+{
+    Person tom = new Person("Tom");
+}
+ 
+public class Person
+{
+    public string Name { get;}
+    public Person(string name) => Name = name;
+ 
+    ~Person()
+    {
+        Console.WriteLine($"{Name} has been deleted");
+    }
+}
+____________________________________________________________________
+using System;
+
+Test();
+ 
+void Test()
+{
+    Person? tom = null;
+    try
+    {
+        tom = new Person("Tom");
+    }
+    finally
+    {
+        tom?.Dispose();
+    }
+}
+ 
+public class Person : IDisposable
+{
+    public string Name { get;}
+    public Person(string name) => Name = name;
+ 
+    public void Dispose()
+    {
+        Console.WriteLine($"{Name} has been disposed");
+    }
+}
+________________________________________________________________________________
+using System;
+
+public class SomeClass: IDisposable
+{
+    private bool disposed = false;
+ 
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+ 
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposed) return;
+        if (disposing)
+        {
+        }
+        disposed = true;
+    }
+    ~SomeClass()
+    {
+        Dispose (false);
+    }
+}
