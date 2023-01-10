@@ -1,0 +1,15 @@
+using System;
+
+long totalMemory = GC.GetTotalMemory(false);
+ 
+GC.Collect();
+GC.WaitForPendingFinalizers();
+
+Test();
+ 
+void Test()
+{
+    Person tom = new Person("Tom");
+    Console.WriteLine(tom.Name);
+}
+record class Person(string Name);
