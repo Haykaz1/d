@@ -1,0 +1,62 @@
+using System;
+
+Test();
+ 
+void Test()
+{
+    Person? tom = null;
+    try
+    {
+        tom = new Person("Tom");
+    }
+    finally
+    {
+        tom?.Dispose();
+    }
+}
+public class Person : IDisposable
+{
+    public string Name { get;}
+    public Person(string name) => Name = name;
+ 
+    public void Dispose() => Console.WriteLine($"{Name} has been disposed");
+}
+__________________________________________________________________________________________________
+using System;
+
+Test();
+ 
+void Test()
+{
+    using (Person tom = new Person("Tom"))
+    {
+        Console.WriteLine($"Name: {tom.Name}");
+    }
+    Console.WriteLine("Конец метода Test");
+}
+public class Person : IDisposable
+{
+    public string Name { get;}
+    public Person(string name) => Name = name;
+ 
+    public void Dispose() => Console.WriteLine($"{Name} has been disposed");
+}
+_______________________________________________________________________________________________
+using System;
+
+Test();
+ 
+void Test()
+{
+    using Person tom = new Person("Tom");
+     
+    Console.WriteLine($"Name: {tom.Name}");
+    Console.WriteLine("Конец метода Test");
+}
+public class Person : IDisposable
+{
+    public string Name { get;}
+    public Person(string name) => Name = name;
+ 
+    public void Dispose() => Console.WriteLine($"{Name} has been disposed");
+}
