@@ -1,0 +1,10 @@
+using System;
+
+Test();
+ 
+void Test()
+{
+    Person tom = new Person("Tom");
+    Console.WriteLine(tom.Name);
+}
+record class Person(string Name);
