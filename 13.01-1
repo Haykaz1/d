@@ -1,0 +1,81 @@
+using System;
+using System.IO;
+
+string dirName = "C:\\";
+if (Directory.Exists(dirName))
+{
+    Console.WriteLine("Подкаталоги:");
+    string[] dirs = Directory.GetDirectories(dirName);
+    foreach (string s in dirs)
+    {
+        Console.WriteLine(s);
+    }
+    Console.WriteLine();
+    Console.WriteLine("Файлы:");
+    string[] files = Directory.GetFiles(dirName);
+    foreach (string s in files)
+    {
+        Console.WriteLine(s);
+    }
+}
+_________________________________________________________________________
+using System.IO;
+
+string path = @"C:\SomeDir";
+string subpath = @"program\avalon";
+DirectoryInfo dirInfo = new DirectoryInfo(path);
+if (!dirInfo.Exists)
+{
+    dirInfo.Create();
+}
+dirInfo.CreateSubdirectory(subpath);
+
+string path1 = @"C:\SomeDir";
+string subpath1 = @"program\avalon";
+if (!Directory.Exists(path))
+{
+    Directory.CreateDirectory(path);
+}
+Directory.CreateDirectory($"{path1}/{subpath1}");
+__________________________________________________________________________
+using System;
+using System.IO;
+
+string dirName = "C:\\Program Files";
+ 
+DirectoryInfo dirInfo = new DirectoryInfo(dirName);
+ 
+Console.WriteLine($"Название каталога: {dirInfo.Name}");
+Console.WriteLine($"Полное название каталога: {dirInfo.FullName}");
+Console.WriteLine($"Время создания каталога: {dirInfo.CreationTime}");
+Console.WriteLine($"Корневой каталог: {dirInfo.Root}");
+__________________________________________________________________________
+using System;
+using System.IO;
+
+string dirName = @"C:\SomeDir";
+ 
+DirectoryInfo dirInfo = new DirectoryInfo(dirName);
+if (dirInfo.Exists)
+{
+    dirInfo.Delete(true);
+    Console.WriteLine("Каталог удален");
+}
+else
+{
+    Console.WriteLine("Каталог не существует");
+}
+__________________________________________________________________________
+using System;
+using System.IO;
+
+string dirName = @"C:\SomeDir";
+if (Directory.Exists(dirName))
+{
+    Directory.Delete(dirName, true);
+    Console.WriteLine("Каталог удален");
+}
+else
+{
+    Console.WriteLine("Каталог не существует");
+}
