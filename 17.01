@@ -1,0 +1,23 @@
+using System;
+using System.IO;
+ 
+string path = "note1.txt";
+using (StreamReader reader = new StreamReader(path))
+{
+    string text = await reader.ReadToEndAsync();
+    Console.WriteLine(text);
+}
+______________________________________________________________
+using System;
+using System.IO;
+ 
+string path = "/Users/eugene/Documents/app/note1.txt";
+ 
+using (StreamReader reader = new StreamReader(path))
+{
+    string line;
+    while ((line = await reader.ReadLineAsync()) != null)
+    {
+        Console.WriteLine(line);
+    }
+}
