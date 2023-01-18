@@ -1,0 +1,84 @@
+using System;
+using System.IO;
+
+string path = "person.dat";
+ 
+using (BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.OpenOrCreate)))
+{
+    writer.Write("Tom");
+    writer.Write(37);
+    Console.WriteLine("File has been written");
+}
+_______________________________________________________________________________________________
+using System;
+using System.IO;
+
+string path = "people.dat";
+ 
+Person[] people =
+{
+    new Person("Tom", 37),
+    new Person("Bob", 41)
+};
+ 
+using (BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.OpenOrCreate)))
+{
+    foreach (Person person in people)
+    {
+        writer.Write(person.Name);
+        writer.Write(person.Age);
+    }
+    Console.WriteLine("File has been written");
+}
+ 
+class Person
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public Person(string name, int age)
+    {
+        Name = name;
+        Age = age;
+    }
+}
+____________________________________________________________________________________________________________
+using System;
+using System.IO;
+
+using (BinaryReader reader = new BinaryReader(File.Open("person.dat", FileMode.Open)))
+{
+    string name = reader.ReadString();
+    int age = reader.ReadInt32();
+    Console.WriteLine($"Name: {name}  Age: {age}");
+}
+________________________________________________________________________________________________________________
+using System;
+using System.IO;
+using System.Collections.Generic;
+
+List<Person> people = new List<Person>();
+ 
+using (BinaryReader reader = new BinaryReader(File.Open("people.dat", FileMode.Open)))
+{
+    while (reader.PeekChar() > -1)
+    {
+        string name = reader.ReadString();
+        int age = reader.ReadInt32();
+        people.Add(new Person(name, age));
+    }
+}
+foreach(Person person in people)
+{
+    Console.WriteLine($"Name: {person.Name}  Age: {person.Age}");
+}
+ 
+class Person
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public Person(string name, int age)
+    {
+        Name = name;
+        Age = age;
+    }
+}
