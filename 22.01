@@ -1,0 +1,45 @@
+using System;
+using System.IO;
+using System.IO.Compression;
+using System.Threading.Tasks;
+
+string sourceFile = "book.pdf";
+string compressedFile = "book.gz"; 
+string targetFile = "book_new.pdf"; 
+
+await CompressAsync(sourceFile, compressedFile);
+await DecompressAsync(compressedFile, targetFile);
+ 
+async Task CompressAsync(string sourceFile, string compressedFile)
+{
+    using FileStream sourceStream = new FileStream(sourceFile, FileMode.OpenOrCreate);
+    using FileStream targetStream = File.Create(compressedFile);
+ 
+    using GZipStream compressionStream = new GZipStream(targetStream, CompressionMode.Compress);
+    await sourceStream.CopyToAsync(compressionStream); 
+ 
+    Console.WriteLine($"Сжатие файла {sourceFile} завершено.");
+    Console.WriteLine($"Исходный размер: {sourceStream.Length}  сжатый размер: {targetStream.Length}");
+}
+ 
+async Task DecompressAsync(string compressedFile, string targetFile)
+{
+    using FileStream sourceStream = new FileStream(compressedFile, FileMode.OpenOrCreate);
+    using FileStream targetStream = File.Create(targetFile);
+    using GZipStream decompressionStream = new GZipStream(sourceStream, CompressionMode.Decompress);
+    await decompressionStream.CopyToAsync(targetStream);
+    Console.WriteLine($"Восстановлен файл: {targetFile}");
+}
+____________________________________________________________________________________________________________
+using System;
+using System.IO.Compression;
+ 
+string sourceFolder = "D://test/"; 
+string zipFile = "D://test.zip"; 
+string targetFolder = "D://newtest"; 
+ 
+ZipFile.CreateFromDirectory(sourceFolder, zipFile);
+Console.WriteLine($"Папка {sourceFolder} архивирована в файл {zipFile}");
+ZipFile.ExtractToDirectory(zipFile, targetFolder);
+ 
+Console.WriteLine($"Файл {zipFile} распакован в папку {targetFolder}");
