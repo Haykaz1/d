@@ -1,0 +1,65 @@
+using System;
+using System.Xml;
+ 
+XmlDocument xDoc = new XmlDocument();
+xDoc.Load("people.xml");
+XmlElement xRoot = xDoc.DocumentElement;
+if (xRoot != null)
+{
+    foreach (XmlElement xnode in xRoot)
+    {
+        XmlNode attr = xnode.Attributes.GetNamedItem("name");
+        Console.WriteLine(attr?.Value);
+ 
+        foreach (XmlNode childnode in xnode.ChildNodes)
+        {
+            if (childnode.Name == "company")
+            {
+                Console.WriteLine($"Company: {childnode.InnerText}");
+            }
+            if (childnode.Name == "age")
+            {
+                Console.WriteLine($"Age: {childnode.InnerText}");
+            }
+        }
+        Console.WriteLine();
+    }
+}
+______________________________________________________________________________________
+using System;
+using System.Xml;
+using System.Collections.Generic;
+
+var people = new List<Person>();
+ 
+XmlDocument xDoc = new XmlDocument();
+xDoc.Load("people.xml");
+XmlElement xRoot = xDoc.DocumentElement;
+if (xRoot != null)
+{
+    foreach (XmlElement xnode in xRoot)
+    {
+        Person person = new Person();
+        XmlNode attr = xnode.Attributes.GetNamedItem("name");
+        person.Name = attr?.Value;
+ 
+        foreach (XmlNode childnode in xnode.ChildNodes)
+        {
+            if (childnode.Name == "company")
+                person.Company = childnode.InnerText;
+ 
+            if (childnode.Name == "age")
+                person.Age = int.Parse(childnode.InnerText);
+        }
+        people.Add(person);
+    }
+    foreach (var person in people)
+        Console.WriteLine($"{person.Name} ({person.Company}) - {person.Age}");
+}
+ 
+class Person
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public string Company { get; set; }
+}
