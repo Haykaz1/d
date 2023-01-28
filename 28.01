@@ -1,0 +1,37 @@
+using System;
+using System.Xml;
+
+XmlDocument xDoc = new XmlDocument();
+xDoc.Load("people.xml");
+XmlElement xRoot = xDoc.DocumentElement;
+ 
+XmlElement personElem = xDoc.CreateElement("person");
+ 
+XmlAttribute nameAttr = xDoc.CreateAttribute("name");
+ 
+XmlElement companyElem = xDoc.CreateElement("company");
+XmlElement ageElem = xDoc.CreateElement("age");
+ 
+XmlText nameText = xDoc.CreateTextNode("Mark");
+XmlText companyText = xDoc.CreateTextNode("Facebook");
+XmlText ageText = xDoc.CreateTextNode("30");
+ 
+nameAttr.AppendChild(nameText);
+companyElem.AppendChild(companyText);
+ageElem.AppendChild(ageText);
+ 
+personElem.Attributes.Append(nameAttr);
+personElem.AppendChild(companyElem);
+personElem.AppendChild(ageElem);
+xRoot?.AppendChild(personElem);
+xDoc.Save("people.xml");
+__________________________________________________________________
+using System;
+using System.Xml;
+ 
+XmlDocument xDoc = new XmlDocument();
+xDoc.Load("people.xml");
+XmlElement xRoot = xDoc.DocumentElement;
+XmlNode firstNode = xRoot?.FirstChild;
+if(firstNode is not null) xRoot?.RemoveChild(firstNode);
+xDoc.Save("people.xml");
