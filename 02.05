@@ -1,0 +1,40 @@
+using System;
+using System.Xml;
+ 
+XmlDocument xDoc = new XmlDocument();
+xDoc.Load("people.xml");
+XmlElement xRoot = xDoc.DocumentElement;
+ 
+XmlNodeList nodes = xRoot?.SelectNodes("*");
+if (nodes is not null)
+{
+    foreach (XmlNode node in nodes)
+        Console.WriteLine(node.OuterXml);
+}
+_______________________________________________________________________________
+using System;
+using System.Xml;
+ 
+XmlDocument xDoc = new XmlDocument();
+xDoc.Load("people.xml");
+XmlElement xRoot = xDoc.DocumentElement;
+XmlNodeList personNodes = xRoot?.SelectNodes("person");
+if(personNodes is not null)
+{
+    foreach (XmlNode node in personNodes)
+        Console.WriteLine(node.SelectSingleNode("@name")?.Value);
+}
+______________________________________________________________________________
+using System;
+using System.Xml;
+ 
+XmlDocument xDoc = new XmlDocument();
+xDoc.Load("people.xml");
+XmlElement xRoot = xDoc.DocumentElement;
+ 
+XmlNodeList companyNodes = xRoot?.SelectNodes("//person/company");
+if(companyNodes is not null)
+{
+    foreach (XmlNode node in companyNodes)
+        Console.WriteLine(node.InnerText);
+}
